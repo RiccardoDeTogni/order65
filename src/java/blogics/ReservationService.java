@@ -80,6 +80,7 @@ public class ReservationService {
        while(inc.before(end_time)){
            insertReservation(db, d, inc, inc = (new Time(inc.getTime() + 3600*1000)), id_campo, id_user, false, 0 );
        }
+       
    }
    
    public static void removeReservation(Database db, Reservation res) throws SQLException{

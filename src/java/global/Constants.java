@@ -10,7 +10,7 @@ package global;
  * @author nick
  */
 public class Constants {
-    public static final String COOKIE_NAME = "_cias_session_";
+    public static final String COOKIE_NAME = "_playtoday_session_";
     
     //public static final String DB_USERNAME = "cias";
     //public static final String DB_PASSWD = "C1as2015";

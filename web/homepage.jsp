@@ -4,6 +4,8 @@
     Author     : Giovanni
 --%>
 
+<%@page import="global.Constants"%>
+<%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page info="Home Page" %>
 <%@ page contentType="text/html" %>
@@ -14,7 +16,61 @@
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 
+<jsp:useBean id="logonManagement" scope="page" class="bflows.LogonManagement" />
+<jsp:setProperty name="logonManagement" property="*" />
+
+<%
+    Cookie[] cookies = request.getCookies();
+    Cookie cookie = null;
+    boolean loggedOn = false;
+    SessionInfo info = null;
+    String status = request.getParameter("status");
+
+    if (status == null) {
+        status = "view";
+    }
+
+    if (cookies != null) {
+        cookie = null;
+        for (Cookie c : cookies) {
+            if (Constants.COOKIE_NAME.equals(c.getName())) {
+                cookie = c;
+            }
+        }
+        if (cookie != null) {
+            info = new SessionInfo(cookie);
+            loggedOn = info.isLoggedon();
+        }
+    }
+    
+    if (status.equals("logon")) {
+        logonManagement.logon();
+        if ((cookie = logonManagement.getCookie()) != null) {
+            response.addCookie(logonManagement.getCookie());
+        }
+        status = "view";
+    }
+
+    if (cookie != null) {
+        info = new SessionInfo(cookie);
+        loggedOn = info.isLoggedon();
+    }
+
+    if (status.equals("logout")) {
+        if (loggedOn) {
+            logonManagement.setCookie(cookie);
+            logonManagement.logout();
+            response.addCookie(logonManagement.getCookie());
+        }
+        loggedOn = false;
+    }
+    
+    %>
+    
     <head>
 
         <!--- Basic Page Needs
@@ -90,7 +146,8 @@
 
                             <input type="username" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>
-
+                            <input type="hidden" value="logon" name="status" >
+                            <input type="hidden" name="logtype" value="user" >
                             <input type="submit" value="Login" name="login" class="button">
 
 

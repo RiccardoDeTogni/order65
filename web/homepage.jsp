@@ -144,8 +144,8 @@
 
                     <!-- Login Form -->
                     <div id="login">
-
-                        <form method="get" id="loginform" class="group">
+                        <% Logs.printLog(LogTypes.DBINFO, "hello"); %>
+                        <form action="homepage.jsp" method="post" id="loginform" class="group">
 
                             <input type="username" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>

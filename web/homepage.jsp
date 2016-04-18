@@ -4,6 +4,8 @@
     Author     : Giovanni
 --%>
 
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
 <%@page import="global.Constants"%>
 <%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -48,6 +50,7 @@
     }
     
     if (status.equals("logon")) {
+        Logs.printLog(LogTypes.ERROR, "hello");
         logonManagement.logon();
         if ((cookie = logonManagement.getCookie()) != null) {
             response.addCookie(logonManagement.getCookie());
@@ -142,7 +145,7 @@
                     <!-- Login Form -->
                     <div id="login">
 
-                        <form id="loginform" class="group">
+                        <form method="get" id="loginform" class="group">
 
                             <input type="username" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>

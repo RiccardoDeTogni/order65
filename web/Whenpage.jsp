@@ -30,14 +30,16 @@
 
         <!-- CSS
         ================================================== -->
+        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">    
         <link rel="stylesheet" href="css/when.css">   
+        
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>
-
+        
 
         <!-- Favicons
         =================================================== -->
@@ -73,17 +75,7 @@
                     <hr>
 
 
-                    <script language="javascript">
-                        function toggle(showHideDiv) {
-                            var ele = document.getElementById(showHideDiv);
-                            if (ele.style.display == "block") {
-                                ele.style.display = "none"; 
-                            }
-                            else {
-                                ele.style.display = "block";
-                            }
-                        }
-                    </script>
+                   
 
 
                     <!-- Available places -->
@@ -92,9 +84,10 @@
                     <div class="placevisualization"> 
 
                         <% for (int i = 0; i < 8; i++) {%>
-                        <a id="displayFields" href="javascript:toggle('toggleField<%Integer.toString(i);%>');"/><div class="place"> inserire funzione nome qui :<%; %></div>
-
-                        <div id="toggleField<%Integer.toString(i);%>" style="display: none">
+                        
+                        <a href="#toggleField<%=i%>" data-toggle="collapse"/><div id="place<%=i%>" attr="<%=i%>" > inserire funzione nome qui :<%; %></div>
+                        
+                        <div id="toggleField<%=i%>" class="collapse">
                             <%for (int j = 0; j < 3; j++) {%>
                             <a href="#"/><div> campo  <%=j%> </div>
                             <%}%>
@@ -126,8 +119,8 @@
         <script src="js/jquery.placeholder.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
-        <script src="js/main.js"></script>    
-
+         <script src="js/main.js"></script>  
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     </body>
 
 </html>

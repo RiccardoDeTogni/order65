@@ -1,11 +1,10 @@
 <%-- 
-    Document   : SearchPage
-    Created on : 22-mar-2016, 16.18.10
+    Document   : Wherepage
+    Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page info="Home Page" %>
+<%@ page info="Where Page" %>
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
@@ -20,7 +19,7 @@
         <!--- Basic Page Needs
    ================================================== -->
         <meta charset="utf-8">
-        <title>PlayToday When</title>
+        <title>PlayToday Where</title>
         <meta name="description" content="Giovanni Bucci">  
         <meta name="author" content="Giovanni Bucci">
 
@@ -35,11 +34,11 @@
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">    
         <link rel="stylesheet" href="css/when.css">   
-        
+
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>
-        
+
 
         <!-- Favicons
         =================================================== -->
@@ -75,27 +74,13 @@
                     <hr>
 
 
-                   
+
 
 
                     <!-- Available places -->
 
-                    <h2> Strutture disponibili il data dalle ora alle ora: </h2>
-                    <div class="placevisualization"> 
-
-                        <% for (int i = 0; i < 8; i++) {%>
-                        
-                        <a href="#toggleField<%=i%>" data-toggle="collapse"/><div id="place<%=i%>" attr="<%=i%>" > inserire funzione nome qui :<%; %></div>
-                        
-                        <div id="toggleField<%=i%>" class="collapse">
-                            <%for (int j = 0; j < 3; j++) {%>
-                            <a href="#"/><div> campo  <%=j%> </div>
-                            <%}%>
-                        </div>
-                        <%}%>
-
-
-
+                    <h2> Calendario per nome struttura: </h2>
+                    
                     </div>
 
                 </div>
@@ -103,7 +88,7 @@
 
         </div><!-- /content-wrap --> 
 
-       
+
 
 
         <!-- footer
@@ -119,7 +104,7 @@
         <script src="js/jquery.placeholder.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
-         <script src="js/main.js"></script>  
+        <script src="js/main.js"></script>  
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     </body>
 

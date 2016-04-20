@@ -4,12 +4,16 @@
     Author     : Giovanni
 --%>
 
+<%@page import="blogics.Campo"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page info="Home Page" %>
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
 
+<jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
+<jsp:setProperty name="logonManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -35,11 +39,11 @@
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">    
         <link rel="stylesheet" href="css/when.css">   
-        
+
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>
-        
+
 
         <!-- Favicons
         =================================================== -->
@@ -75,7 +79,7 @@
                     <hr>
 
 
-                   
+
 
 
                     <!-- Available places -->
@@ -83,19 +87,26 @@
                     <h2> Strutture disponibili il data dalle ora alle ora: </h2>
                     <div class="placevisualization"> 
 
-                        <% for (int i = 0; i < 8; i++) {%>
-                        
-                        <a href="#toggleField<%=i%>" data-toggle="collapse"/><div id="place<%=i%>" attr="<%=i%>" > inserire funzione nome qui :<%; %></div>
-                        
+
+                        <div>
+                        <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
+                            Campo tmp= new Campo(0,"");
+                            for (Campo c : cl) {
+                                int i=0;
+                                if (c.getId_struttura() != tmp.getId_struttura()) {
+                        %>
+                    </div>
+                        <a href="#toggleField<%=i%>" data-toggle="collapse"/><div id="place<%=i%>" attr="<%=i%>" > <%=c.getNome_struttura()%></div>
                         <div id="toggleField<%=i%>" class="collapse">
-                            <%for (int j = 0; j < 3; j++) {%>
-                            <a href="#"/><div> campo  <%=j%> </div>
-                            <%}%>
-                        </div>
-                        <%}%>
-
-
-
+                        <%
+                                i++;
+                                }
+                                %>
+                                <a href="#"/><div><%=c.getNome()%></div>
+                        <%
+                                tmp = c;
+                            }
+                        %>
                     </div>
 
                 </div>
@@ -103,7 +114,7 @@
 
         </div><!-- /content-wrap --> 
 
-       
+
 
 
         <!-- footer
@@ -119,7 +130,7 @@
         <script src="js/jquery.placeholder.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
-         <script src="js/main.js"></script>  
+        <script src="js/main.js"></script>  
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     </body>
 

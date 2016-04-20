@@ -52,7 +52,10 @@ public class Campo {
         this.id_struttura = id_struttura;
     }
     
-    
+    public Campo(long id_struttura, String nome){
+        this.id_struttura = id_struttura;
+        this.nome = nome;
+    }
     
     public Campo(ResultSet rs){
         try {

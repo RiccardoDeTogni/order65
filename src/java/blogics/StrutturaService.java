@@ -36,7 +36,7 @@ public class StrutturaService {
             resultSet.close();
             return sl;
         } catch (SQLException ex) {
-            throw new ResultSetDBException("UserService: getUserList():  ResultSetDBException: " + ex.getMessage(), db);
+            throw new ResultSetDBException("StrutturaService: getStrutturaListFromCity():  ResultSetDBException: " + ex.getMessage(), db);
         }
     }
     

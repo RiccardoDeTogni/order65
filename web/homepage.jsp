@@ -17,7 +17,7 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <!--<![endif]-->
 <%
     request.setCharacterEncoding("UTF-8");
 %>
@@ -54,6 +54,7 @@
         logonManagement.logon();
         if ((cookie = logonManagement.getCookie()) != null) {
             response.addCookie(logonManagement.getCookie());
+            response.sendRedirect("SearchPage.jsp");
         }
         status = "view";
     }
@@ -73,7 +74,7 @@
     }
     
     %>
-    
+    <html class="no-js" lang="en">
     <head>
 
         <!--- Basic Page Needs
@@ -145,9 +146,9 @@
                     <!-- Login Form -->
                     <div id="login">
                         <% Logs.printLog(LogTypes.DBINFO, "hello"); %>
-                        <form action="homepage.jsp" method="post" id="loginform" class="group">
+                        <form action="homepage.jsp" method="get" id="loginform" class="group">
 
-                            <input type="username" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
+                            <input type="text" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>
                             <input type="hidden" value="logon" name="status" >
                             <input type="hidden" name="logtype" value="user" >

@@ -6,6 +6,8 @@ package bflows;
 import blogics.Campo;
 import blogics.Reservation;
 import blogics.ReservationService;
+import blogics.Struttura;
+import blogics.StrutturaService;
 import blogics.UserService;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -95,7 +97,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -107,6 +109,44 @@ public class ReservationManagement {
             }
         }
         return cl;
+    }
+    
+    public List<Struttura> getStrutturaListFromCity(){
+      Database db = null;
+      List<Struttura> sl = null;
+        try {
+            
+            db = DBService.getDatabase();
+            sl = StrutturaService.getStrutturaListFromCity(db, this.citta);
+            
+            db.commit();
+
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+        return sl;
     }
     
     public void insertReservation() {

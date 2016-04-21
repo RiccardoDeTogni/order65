@@ -34,8 +34,8 @@ public class LogonManagement {
     private Cookie cookie;
     private SessionInfo info;
     private long id;
-    private String username;
-    private String passwd;
+    private String USERNAME;
+    private String PASSWORD;
     private String first_name;
     private String telephone;
     private String city;
@@ -63,15 +63,15 @@ public class LogonManagement {
             ILoggableEntity le = null;
             ILoggableEntity sle = null;
             if (sType == SessionType.USER) {
-                le = UserService.getUser(db, username);
+                le = UserService.getUser(db, this.USERNAME);
             }
 
             if (this.sType == SessionType.USER) {
-                if (le == null || !le.getPasswd().equals(Sha512.hashText(Sha512.hashText(this.passwd)))) {
+                if (le == null || !le.getPasswd().equals(Sha512.hashText(Sha512.hashText(this.PASSWORD)))) {
                     errorMessage = "Password Errata";
                     cookie = null;
                 } else {
-                    this.cookie = Session.createLoginCookie(db, this.username, this.sType, this.city);
+                    this.cookie = Session.createLoginCookie(db, this.USERNAME, this.sType, this.city);
                 }
             }
 
@@ -115,7 +115,7 @@ public class LogonManagement {
         Database db = null;
         try {
             db = DBService.getDatabase();
-            User u = UserService.getUser(db, this.username);
+            User u = UserService.getUser(db, this.USERNAME);
             u.invalidateSession(db);
 
             db.commit();
@@ -159,12 +159,31 @@ public class LogonManagement {
         MService mservice = new MService();
         String text = "NOME: " + this.first_name + System.lineSeparator()
                 + "COGNOME: " + this.surname + System.lineSeparator()
-                + "USERNAME: " + this.username + System.lineSeparator()
+                + "USERNAME: " + this.USERNAME + System.lineSeparator()
                 + "EMAIL: " + this.email + System.lineSeparator() + System.lineSeparator()
                 + "TESTO: " + System.lineSeparator() + this.testo;
         mservice.send(this.email, Constants.ADMIN_MAIL, this.oggetto, text);
     }
 
+    public String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public void setUSERNAME(String USERNAME) {
+        this.USERNAME = USERNAME;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
+    }
+
+    
+    
+    
     public String getOggetto() {
         return oggetto;
     }
@@ -219,22 +238,6 @@ public class LogonManagement {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPasswd() {
-        return passwd;
-    }
-
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
     }
 
     public String getFirst_name() {

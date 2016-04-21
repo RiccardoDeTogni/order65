@@ -298,15 +298,15 @@
             </div> <!-- /about-header -->                   	
             <div id="register">
                 <form id="registerform" class="group">
-                    <input type="name" value="" name="NAME" class="name" id="register-NAME" placeholder="Nome" required>
-                    <input type="surname" value="" name="SURNAME" class="surname" id="register-SURNAME" placeholder="Cognome" required>
-                    <input type="city" value="" name="CITY" class="city" id="register-CITY" placeholder="Città" required>
-                    <input type="date" value="" name="DATE" class="date" id="register-DATE" placeholder="Data di Nascita" required>
-                    <input type="phonenumber" value="" name="PHONENUMBER" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
-                    <input type="username" value="" name="USERNAME" class="username" id="register-USERNAME" placeholder="Username" required>
-                    <input type="password" value="" name="PASSWORD" class="password" id="register-PASSWORD" placeholder="Password" required>
-                    <input type="password" value="" name="CONFIRMPASSWORD" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
-                    <input type="email" value="" name="EMAIL" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>              
+                    <input type="name" value="" name="first_name" class="name" id="register-NAME" placeholder="Nome" required>
+                    <input type="surname" value="" name="surname" class="surname" id="register-SURNAME" placeholder="Cognome" required>
+                    <input type="city" value="" name="city" class="city" id="register-CITY" placeholder="Città" required>
+                    <input type="date" value="" name="data" class="date" id="register-DATE" placeholder="Data di Nascita" required>
+                    <input type="phonenumber" value="" name="telephone" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
+                    <input type="username" value="" name="username" class="username" id="register-USERNAME" placeholder="Username" required>
+                    <input type="password" value="" name="password" class="password" id="register-PASSWORD" placeholder="Password" required>
+                    <input type="password" value="" name="confirmpassword" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
+                    <input type="email" value="" name="email" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>              
                     <input type="submit" value="Registrati" name="register" class="button">
 
 

@@ -72,7 +72,7 @@ public class Struttura {
                 Logs.printLog(LogTypes.WARNING, sqle.toString());
             }
         try {
-            this.nome = rs.getString("nome");
+            this.nome = rs.getString("name");
         } catch (SQLException sqle) {
             Logs.printLog(LogTypes.WARNING, sqle.toString());
         }

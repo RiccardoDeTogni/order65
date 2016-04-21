@@ -61,7 +61,6 @@ public class LogonManagement {
             }
             db = DBService.getDatabase();
             ILoggableEntity le = null;
-            ILoggableEntity sle = null;
             if (sType == SessionType.USER) {
                 le = UserService.getUser(db, this.USERNAME);
             }
@@ -71,7 +70,7 @@ public class LogonManagement {
                     errorMessage = "Password Errata";
                     cookie = null;
                 } else {
-                    this.cookie = Session.createLoginCookie(db, this.USERNAME, this.sType, this.city);
+                    this.cookie = Session.createLoginCookie(db, this.USERNAME, this.sType, ((User) le).getCity());
                 }
             }
 

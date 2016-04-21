@@ -42,7 +42,7 @@
     if (status == null) {
         status = "view";
     }
-    
+    reservationManagement.setCitta(info.getCity());
 %>
 
 <!DOCTYPE html>
@@ -131,7 +131,6 @@
                                        <option type="name" value="<%=s.getId()%>" name="FIELDNAME" class="fieldname" id="search-FIELDNAME" placeholder="Struttura" required><%=s.getNome()%></option>
                                     <% } %>
                                     </select>
-                                    <input type="hidden" value="<%=info.getCity()%>" name="CITY" class="city" id="search-CITY" required>
 
                                     <input type="submit" value="Cerca" name="search" class="button">
 

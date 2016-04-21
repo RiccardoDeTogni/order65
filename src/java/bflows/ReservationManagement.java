@@ -232,6 +232,88 @@ public class ReservationManagement {
             }
         }
     }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Date getData() {
+        return data;
+    }
+
+    public void setData(Date data) {
+        this.data = data;
+    }
+
+    public Time getOra_inizio() {
+        return ora_inizio;
+    }
+
+    public void setOra_inizio(Time ora_inizio) {
+        this.ora_inizio = ora_inizio;
+    }
+
+    public Time getOra_fine() {
+        return ora_fine;
+    }
+
+    public void setOra_fine(Time ora_fine) {
+        this.ora_fine = ora_fine;
+    }
+
+    public long getId_campo() {
+        return id_campo;
+    }
+
+    public void setId_campo(long id_campo) {
+        this.id_campo = id_campo;
+    }
+
+    public boolean isAperta() {
+        return aperta;
+    }
+
+    public void setAperta(boolean aperta) {
+        this.aperta = aperta;
+    }
+
+    public int getNum_partecipanti() {
+        return num_partecipanti;
+    }
+
+    public void setNum_partecipanti(int num_partecipanti) {
+        this.num_partecipanti = num_partecipanti;
+    }
+
+    public long getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(long id_user) {
+        this.id_user = id_user;
+    }
+
+    public List<Reservation> getResList() {
+        return resList;
+    }
+
+    public void setResList(List<Reservation> resList) {
+        this.resList = resList;
+    }
+
+    public String getCitta() {
+        return citta;
+    }
+
+    public void setCitta(String citta) {
+        this.citta = citta;
+    }
+    
+    
         
 }
     

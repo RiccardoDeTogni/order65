@@ -50,7 +50,6 @@
     }
     
     if (status.equals("logon")) {
-        Logs.printLog(LogTypes.ERROR, "hello");
         logonManagement.logon();
         if ((cookie = logonManagement.getCookie()) != null) {
             response.addCookie(logonManagement.getCookie());
@@ -145,7 +144,6 @@
 
                     <!-- Login Form -->
                     <div id="login">
-                        <% Logs.printLog(LogTypes.DBINFO, "hello"); %>
                         <form action="homepage.jsp" method="get" id="loginform" class="group">
 
                             <input type="text" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>

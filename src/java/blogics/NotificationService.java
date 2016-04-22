@@ -7,9 +7,11 @@ package blogics;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 import services.database.Database;
 import services.database.exceptions.DuplicatedRecordDBException;
@@ -28,7 +30,8 @@ public class NotificationService {
         return not;
     }
     
-    public static List<Notification> getUserNotification(Database db, long id_user, Timestamp data) throws SQLException{
+    public static List<Notification> getUserNotification(Database db, long id_user, Timestamp data) throws SQLException, NotFoundDBException{
+        List<Notification> nl = new ArrayList();
         String sql = "SELECT *"
                 + "   FROM notifica"
                 + "   WHERE id_user = ? AND time > ?";
@@ -36,6 +39,12 @@ public class NotificationService {
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ps.setLong(1, id_user);
         ps.setTimestamp(2, data);
+        ResultSet rs = db.select(ps);
+        while(rs.next()){
+            nl.add(new Notification(rs));
+        }
+        
+        return nl;
     }
     
 }

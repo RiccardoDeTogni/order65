@@ -517,15 +517,15 @@ main::after {
 }
 
 main h1 {
-	font: 38px/1.2em "montserrat-bold", sans-serif;
+	font: 30px/1.2em "montserrat-bold", sans-serif;
 	color: #44d62c;
 	margin-bottom: 12px;
 	padding: 0;
 }
 
 main p {
-	font: 17px/36px "montserrat-regular", sans-serif;
-	color: #fff;
+	font: 15px/34px "montserrat-regular", sans-serif;
+	color: rgba(255, 255, 255, 0.8);
 	margin-bottom: 18px;
 	padding: 0;
 }
@@ -541,7 +541,7 @@ main hr {
 main .site-header .logo {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 0 0 36px 0;
+	margin: 0 0 10px 0;
 	padding: 0;
 }
 main .site-header .logo a {
@@ -553,8 +553,8 @@ main .site-header .logo a {
 	font: 0/0 a;
 	text-shadow: none;
 	color: transparent;
-	width: 230px;
-	height: 200px;
+	width: 240px;
+	height: 90px;
 	background: url("../images/logo/Logoplay.png") no-repeat;
 	background-size: contain;
 }
@@ -565,11 +565,11 @@ main .site-header .logo a {
 	}
 
 	main h1 {
-		font: 35px/1.2em "montserrat-bold", sans-serif;
+		font: 27px/1.2em "montserrat-regular", sans-serif;
 	}
 
 	main p {
-		font: 16px/30px "montserrat-regular", sans-serif;
+		font: 14px/28px "montserrat-regular", sans-serif;
 	}
 
 	main .site-header .logo {
@@ -589,11 +589,11 @@ main .site-header .logo a {
 	}
 
 	main h1 {
-		font: 32px/1.2em "montserrat-bold", sans-serif;
+		font: 24px/1.2em "montserrat-bold", sans-serif;
 	}
 
 	main p {
-		font: 15px/30px "montserrat-regular", sans-serif;
+		font: 13px/28px "montserrat-regular", sans-serif;
 	}
 
 	main .site-header .logo {
@@ -608,11 +608,11 @@ main .site-header .logo a {
 	}
 
 	main h1 {
-		font: 30px/1.2em "montserrat-bold", sans-serif;
+		font: 22px/1.2em "montserrat-bold", sans-serif;
 	}
 
 	main p {
-		line-height: 27px;
+		line-height: 25px;
 	}
 
 	main::after {
@@ -627,11 +627,11 @@ main .site-header .logo a {
 	}
 
 	main h1 {
-		font: 28px/1.2em "montserrat-bold", sans-serif;
+		font: 20px/1.2em "montserrat-bold", sans-serif;
 	}
 
 	main p {
-		font: 14px/27px "montserrat-regular", sans-serif;
+		font: 12px/25px "montserrat-regular", sans-serif;
 	}
 
 	main .site-header .logo a {
@@ -905,7 +905,7 @@ main .site-header .logo a {
 	background-size: contain;
 }
 
-.modal-toggles .location a::before {
+.modal-toggles .product a::before {
 	width: 26px;
 	height: 26px;
 	line-height: 28px;
@@ -960,7 +960,7 @@ main .site-header .logo a {
 /* 06. =modals
 /* =================================================================== */
 #mod-about,
-#mod-map {
+#mod-product {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -986,7 +986,7 @@ main .site-header .logo a {
 	transform: translateX(-100%);
 }
 
-#mod-map {
+#mod-product {
 	-moz-transform: translateX(100%);
 	-o-transform: translateX(100%);
 	-webkit-transform: translateX(100%);
@@ -994,7 +994,7 @@ main .site-header .logo a {
 	transform: translateX(100%);
 }
 
-#mod-map.is-visible,
+#mod-product.is-visible,
 #mod-about.is-visible {
 	-moz-transform: translateX(0);
 	-o-transform: translateX(0);
@@ -1320,120 +1320,24 @@ main .site-header .logo a {
 	background: #44d62c;
 }
 
-/* modal map
+/* modal product
 ------------------------------------------ */
-#mod-map {
-	background: black;
+#mod-product {
+	
 	z-index: 999993;
 }
 
-#mod-map .gm-style img {
-	max-width: none;
-}
 
-#mod-map .gm-style label {
-	width: auto;
-	display: inline;
-}
 
-#mod-map #map-container {
-	height: 100%;
-	width: 100%;
-	background: white;
-	position: relative;
-}
 
-#mod-map address {
-	font: 12px/18px "montserrat-regular", sans-serif;
-	display: table-cell;
-	vertical-align: middle;
-	background: rgba(0, 0, 0, 0.85);
-	color: #ddd;
-	padding: 18px 30px 18px 75px;
-	margin: 0;
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	z-index: 999994;
-}
-
-#mod-map address::before {
-	position: absolute;
-	content: " ";
-	display: inline-block;
-	width: 36px;
-	height: 36px;
-	line-height: 36px;
-	background: url("../images/marker@2x.png") no-repeat center center;
-	background-size: contain;
-	margin: 5px;
-	margin-top: -18px;
-	top: 50%;
-	left: 20px;
-}
-
-#mod-map #map-zoom-in,
-#mod-map #map-zoom-out {
-	height: 32px;
-	width: 32px;
-	cursor: pointer;
-	margin-right: 40px;
-	color: white;
-	background-color: black;
-}
-
-@media only screen and (max-width:600px) {
-	#mod-map #map-zoom-in,
-	#mod-map #map-zoom-out {
-		margin-right: 35px;
-	}
-
-}
-
-@media only screen and (max-width:400px) {
-	#mod-map #map-zoom-in,
-	#mod-map #map-zoom-out {
-		margin-right: 25px;
-	}
-
-}
-
-#mod-map #map-zoom-in {
-	margin-bottom: 2px;
-	margin-top: 30px;
-}
-
-#mod-map #map-zoom-in::before,
-#mod-map #map-zoom-out::before {
+#mod-product::after {
+	content: "";
 	display: block;
-	color: white;
-	text-align: center;
-	font-family: 'FontAwesome';
-	font-size: 14px;
-	content: "\f067";
-	height: 32px;
-	width: 32px;
-	line-height: 32px;
-	-moz-transition: color 0.3s ease-in-out;
-	-o-transition: color 0.3s ease-in-out;
-	-webkit-transition: color 0.3s ease-in-out;
-	-ms-transition: color 0.3s ease-in-out;
-	transition: color 0.3s ease-in-out;
+	height: 120px;
 }
 
-#mod-map #map-zoom-in::before {
-	content: "\f067";
-}
 
-#mod-map #map-zoom-out::before {
-	content: "\f068";
-}
 
-#mod-map #map-zoom-in:hover::before,
-#mod-map #map-zoom-out:hover::before {
-	color: #44d62c;
-}
 
 /* 
 /* 07. =footer

@@ -78,6 +78,14 @@
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
 
+        <script>
+            $(function() {
+    var availableTags = [];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+  });
+  </script>
     </head>
 
     <body>
@@ -125,13 +133,10 @@
 
 
                                 <form id="placesearchform" class="group">
-                                    <select name="Struttura">
-                                    <% List<Struttura> sl = reservationManagement.getStrutturaListFromCity();
-                                       for(Struttura s : sl){ %>
-                                       <option type="name" value="<%=s.getId()%>" name="FIELDNAME" class="fieldname" id="search-FIELDNAME" placeholder="Struttura" required><%=s.getNome()%></option>
-                                    <% } %>
-                                    </select>
-
+                                   <!-- <select name="Struttura">
+                                    
+                                    </select> -->
+                                    <input type="name" id="tags">
                                     <input type="submit" value="Cerca" name="search" class="button">
 
 

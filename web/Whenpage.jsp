@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page info="Home Page" %>
+<%@ page info="When Page" %>
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>

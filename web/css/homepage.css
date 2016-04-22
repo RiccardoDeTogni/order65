@@ -47,6 +47,10 @@ body {
 	font: 15px/30px "montserrat-regular", sans-serif;
 	font-weight: normal;
 	color: #575859;
+        background: #161415 url(../images/bg.jpg) no-repeat center center fixed !important;
+	-webkit-background-size: cover !important;
+	-moz-background-size: cover !important;
+	background-size: cover !important;
 }
 
 /* links 
@@ -533,7 +537,7 @@ main p {
 main hr {
 	border: solid #44d62c;
 	border-width: 5px 0 0;
-	margin: 19px auto 12px;
+	margin: 19px auto 20px;
 	height: 0;
 	width: 100px;
 }
@@ -541,7 +545,7 @@ main hr {
 main .site-header .logo {
 	display: inline-block;
 	vertical-align: middle;
-	margin: 0 0 36px 0;
+	margin: 0 0 10px 0;
 	padding: 0;
 }
 
@@ -554,8 +558,8 @@ main .site-header .logo a {
 	font: 0/0 a;
 	text-shadow: none;
 	color: transparent;
-	width: 116px;
-	height: 80px;
+	width: 240px;
+	height: 90px;
 	background: url("../images/logo/Logoplay.png") no-repeat;
 	background-size: contain;
 }
@@ -804,6 +808,34 @@ main .site-header .logo a {
 	margin-right: 5px;
 }
 
+#registration {
+    display:block;
+    clear:both;
+    font-family: "montserrat-bold", sans-serif;
+        height: 54px;
+	line-height: 30px;
+	padding: 12px 15px 12px 20px;
+	border-radius: 3px 3px 3px 3px;
+	background: rgba(255, 255, 255, 0.25);
+        margin: 5px auto 20px auto;
+	width: 50%;
+        clear:both;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	text-align: center;
+	color: black;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+#registration:hover {
+    background: white;
+}
+
 @media only screen and (max-width:900px) {
 	#loginform, #registerform {
 		width: 70%;
@@ -814,8 +846,13 @@ main .site-header .logo a {
 	}
 
 	#loginform input[type="submit"], #registerform input[type="submit"] {
-		width: 55%;
+		width: 60%;
 	}
+        
+        #registration {
+            width: 45%;
+        }
+        
 
 }
 
@@ -830,9 +867,11 @@ main .site-header .logo a {
 	}
 
 	#mc-signup input[type="submit"], #loginform input[type="submit"], #registerform input[type="submit"] {
-		width: 45%;
+		width: 55%;
 	}
-
+        #registration {
+            width:45%;
+        }
 }
 
 @media only screen and (max-width:600px) {
@@ -851,7 +890,7 @@ main .site-header .logo a {
 		text-align: center;
 	}
 
-	#loginform input[type="submit"], #registerform input[type="submit"] {
+	#loginform input[type="submit"], #registerform input[type="submit"], #registration {
 		width: 100%;
 		float: none;
 		border-radius: 0 0 3px 3px;
@@ -909,7 +948,8 @@ main .site-header .logo a {
 	top: 3px;
 }
 
-.modal-toggles .sign_in a::before {
+.modal-toggles .product a::before {
+        
 	width: 28px;
 	height: 28px;
 	line-height: 28px;
@@ -973,8 +1013,9 @@ main .site-header .logo a {
 /* 
 /* 06. =modals
 /* =================================================================== */
-#signin,
-#mod-about  {
+#product,
+#mod-about, 
+#signin {
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -992,7 +1033,7 @@ main .site-header .logo a {
 	zoom: 1;
 }
 
-#signin
+#product, #signin
 {
 	-moz-transform: translateX(-100%);
 	-o-transform: translateX(-100%);
@@ -1021,7 +1062,7 @@ main .site-header .logo a {
 	zoom: 1;
 }
 
-#signin.is-visible {
+#product.is-visible, #signin.is-visible {
 	-moz-transform: translateX(0);
 	-o-transform: translateX(0);
 	-webkit-transform: translateX(0);
@@ -1035,7 +1076,7 @@ main .site-header .logo a {
 
 
 
-#signin.is-visible {
+#product.is-visible, #signin.is-visible {
 	position: absolute;
 	min-height: none;
 }
@@ -1130,13 +1171,13 @@ main .site-header .logo a {
 /* modal about
 ------------------------------------------ */
 
-#signin {
+#product, #signin {
 	z-index: 999991;
 }
 
 #mod-about
 {
-    z-index: -1;
+    z-index: 999991;
 }
 
 #mod-about::after
@@ -1146,7 +1187,7 @@ main .site-header .logo a {
 	height: 120px;
 }
 
-#signin::after {
+#product::after, #signin::after {
 	content: "";
 	display: block;
 	height: 120px;
@@ -1157,7 +1198,7 @@ main .site-header .logo a {
 	max-width: 750px;
 }
 
-#signin .row {
+#product .row, #signin .row {
 	max-width: 750px;
 }
 

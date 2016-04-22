@@ -128,13 +128,13 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday</a>
                     </div> 
                 </header>
 
                 <div id="main-content" class="twelve columns">
 
-                    <h1>PlayToday</h1>
+                    
 
 
 
@@ -155,7 +155,7 @@
 
 
                         </form>
-
+                        
                     </div> <!-- /sign-up form -->      
 
 
@@ -164,11 +164,23 @@
 
                 <div class="modal-toggles">
                     <ul>
-                        <li class="sign_in"><a href="#signin">Registrati</a></li>
-                        <li class="about-us"><a href="#mod-about">More about us</a></li>
+                        <a href="#signin"><li id="registration">Registrati</li></a>
+                        <li class="product"><a href="#product">Playtoday</a></li>
+                        <li class="about-us"><a href="#mod-about">About us</a></li>
                         <!--  <li class="product"><a href="#mod-product">The product PlayToday</a></li> -->
                     </ul>
-                </div><!-- /modal-toggles --> 	
+                </div><!-- /modal-toggles --> 
+                
+                <hr>
+                <h1>Il network di giocatori e campi per le tue partite di calcetto</h1>
+                
+               
+
+               
+               
+               <p> Quante volte non hai trovato il campo o i giocatori per le tue partite di calcetto?<br>Sei stanco di gruppi Whatsapp e telefonate?<br>
+                   PLAYTODAY ti aiuta a trovare gli amici per giocare e prenotare il campo migliore per le tue esigenze in pochi passaggi.<br>
+                    Con PLAYTODAY organizzare le tue partite diventa facile, veloce e divertente.</p>
 
             </main>	      
 
@@ -315,8 +327,30 @@
 
             </div>		      
 
-        </section><!-- /mod-about -->
+        </section><!-- /signin -->
 
+ <section id="product" >
+
+            <!-- Modal toggle -->
+            <div class="modal-toggle">
+                <a href="#" title="close" id="modal-close">close</a>
+            </div>	        	
+
+            <div class="row about-header">
+
+                <div class="twelve columns">	
+
+                    <div class="icon-wrap">
+                        <i class="icon"></i>
+                    </div>
+
+                    <h1>Playtoday</h1>			         
+
+                </div>
+
+            </div> <!-- /about-header -->                   	
+           
+        </section><!-- /product -->
 
 
 

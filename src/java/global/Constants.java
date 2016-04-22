@@ -20,7 +20,7 @@ public class Constants {
     public static final String DB_ADDRESS = "jdbc:mysql://localhost/playtoday?user=" + Constants.DB_USERNAME + "&password="+ Constants.DB_PASSWD;
 
     public static final Boolean ENABLE_LOGS = true;
-    public static final String LOG_FOLDER = "C:\\Users\\Riccardo\\Documents\\Logs";
+    public static final String LOG_FOLDER = "C:\\Users\\Riccardo\\Documents\\Logs\\";
     public static final String LOG_DBINFO = Constants.LOG_FOLDER + "dbinfo.log";
     public static final String LOG_ERROR = Constants.LOG_FOLDER + "error.log";
     public static final String LOG_WARNING = Constants.LOG_FOLDER + "warning.log";

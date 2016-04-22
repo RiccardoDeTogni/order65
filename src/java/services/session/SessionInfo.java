@@ -27,6 +27,7 @@ public class SessionInfo {
     private int usrType;
     private long id;
     private long sport;
+    private String city;
 
     public long getSport() {
         return sport;
@@ -34,6 +35,14 @@ public class SessionInfo {
 
     public void setSport(long sport) {
         this.sport = sport;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
     
     
@@ -85,6 +94,7 @@ public class SessionInfo {
                 this.id = le.getId();
                 this.usrType = ((User) le).getType();
                 this.sport = ((User) le).getSport();
+                this.city = ((User) le).getCity();
             }
             this.dhPwd = le.getPasswd();
             db.commit();

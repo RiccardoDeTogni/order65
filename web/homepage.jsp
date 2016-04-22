@@ -4,6 +4,8 @@
     Author     : Giovanni
 --%>
 
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
 <%@page import="global.Constants"%>
 <%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -15,7 +17,7 @@
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
-<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <!--<![endif]-->
 <%
     request.setCharacterEncoding("UTF-8");
 %>
@@ -51,6 +53,7 @@
         logonManagement.logon();
         if ((cookie = logonManagement.getCookie()) != null) {
             response.addCookie(logonManagement.getCookie());
+            response.sendRedirect("SearchPage.jsp");
         }
         status = "view";
     }
@@ -70,7 +73,7 @@
     }
     
     %>
-    
+    <html class="no-js" lang="en">
     <head>
 
         <!--- Basic Page Needs
@@ -141,10 +144,9 @@
 
                     <!-- Login Form -->
                     <div id="login">
+                        <form action="homepage.jsp" method="get" id="loginform" class="group">
 
-                        <form id="loginform" class="group">
-
-                            <input type="username" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
+                            <input type="text" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>
                             <input type="hidden" value="logon" name="status" >
                             <input type="hidden" name="logtype" value="user" >
@@ -296,15 +298,15 @@
             </div> <!-- /about-header -->                   	
             <div id="register">
                 <form id="registerform" class="group">
-                    <input type="name" value="" name="NAME" class="name" id="register-NAME" placeholder="Nome" required>
-                    <input type="surname" value="" name="SURNAME" class="surname" id="register-SURNAME" placeholder="Cognome" required>
-                    <input type="city" value="" name="CITY" class="city" id="register-CITY" placeholder="Città" required>
-                    <input type="date" value="" name="DATE" class="date" id="register-DATE" placeholder="Data di Nascita" required>
-                    <input type="phonenumber" value="" name="PHONENUMBER" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
-                    <input type="username" value="" name="USERNAME" class="username" id="register-USERNAME" placeholder="Username" required>
-                    <input type="password" value="" name="PASSWORD" class="password" id="register-PASSWORD" placeholder="Password" required>
-                    <input type="password" value="" name="CONFIRMPASSWORD" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
-                    <input type="email" value="" name="EMAIL" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>              
+                    <input type="name" value="" name="first_name" class="name" id="register-NAME" placeholder="Nome" required>
+                    <input type="surname" value="" name="surname" class="surname" id="register-SURNAME" placeholder="Cognome" required>
+                    <input type="city" value="" name="city" class="city" id="register-CITY" placeholder="Città" required>
+                    <input type="date" value="" name="data" class="date" id="register-DATE" placeholder="Data di Nascita" required>
+                    <input type="phonenumber" value="" name="telephone" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
+                    <input type="username" value="" name="username" class="username" id="register-USERNAME" placeholder="Username" required>
+                    <input type="password" value="" name="password" class="password" id="register-PASSWORD" placeholder="Password" required>
+                    <input type="password" value="" name="confirmpassword" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
+                    <input type="email" value="" name="email" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>              
                     <input type="submit" value="Registrati" name="register" class="button">
 
 

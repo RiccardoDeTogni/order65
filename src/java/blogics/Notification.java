@@ -22,10 +22,9 @@ public class Notification {
     private long id_user;
     private Timestamp time;
     
-    public Notification(int type, long id, String message, long id_user, Timestamp time){
+    public Notification(int type, String message, long id_user, Timestamp time){
         this.time = time;
         this.type = type;
-        this.id = id;
         this.id_user = id_user;
         this.message = message;
     }

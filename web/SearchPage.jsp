@@ -77,10 +77,15 @@
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-
+        <% List<Struttura> str=reservationManagement.getStrutturaListFromCity(); %>
+            
         <script>
             $(function() {
-    var availableTags = [];
+    var availableTags = [
+        <% for (Struttura s : str) { %>
+          <%=s.getNome()%>,
+         <%}%>
+    ];
     $( "#tags" ).autocomplete({
       source: availableTags
     });

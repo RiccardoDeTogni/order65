@@ -4,6 +4,8 @@
     Author     : Giovanni
 --%>
 
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
 <%@page import="blogics.Campo"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -13,7 +15,7 @@
 <%@ page buffer="30kb" %>
 
 <jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
-<jsp:setProperty name="logonManagement" property="*" />
+<jsp:setProperty name="reservationManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -66,7 +68,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -92,6 +94,7 @@
                         <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
                             Campo tmp= new Campo(0,"");
                             for (Campo c : cl) {
+                                Logs.printLog(LogTypes.DBINFO, "WhenPage-Campo:" + c.getNome() );
                                 int i=0;
                                 if (c.getId_struttura() != tmp.getId_struttura()) {
                         %>

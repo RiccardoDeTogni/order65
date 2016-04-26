@@ -33,6 +33,6 @@ public class Constants {
     public static final String PASSWORD = "tttpwd314";
     public static final String SMTP_PORT = "587";
     
-    public static final String ADMIN_MAIL = "niccolo.ferrari@hotmail.it";
+    public static final String ADMIN_MAIL = "detogni.riccardo@gmail.com";
     
 }

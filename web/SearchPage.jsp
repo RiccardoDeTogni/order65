@@ -153,7 +153,7 @@
                                 <h2>Quando?</h2>
 
 
-                                <form id="placesearchform" class="group">
+                                <form id="placesearchform" action="Whenpage.jsp" class="group">
 
                                     <input type="date" value="oggi" name="DATE" class="date" id="search-DATE" placeholder="Data" required>
                                     <input type="startime" value="startime" name="STARTIME" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>

@@ -52,12 +52,12 @@
 				return false;
 			});
 		});
-	}
+	};
 
 	$.confirm.hide = function(){
 		$('#confirmOverlay').fadeOut(function(){
 			$(this).remove();
 		});
-	}
+	};
 
 })(jQuery);

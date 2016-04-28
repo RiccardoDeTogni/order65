@@ -134,7 +134,7 @@
                                     i++;
                                 }
                             %>
-                            <a href="#"/><div><%=c.getNome()%></div>
+                            <a href="#"/><div class="field"><%=c.getNome()%></div>
                                 <%
                                         tmp = c;
                                     }
@@ -147,7 +147,7 @@
         </div><!-- /content-wrap --> 
 
 
-
+        
 
         <!-- footer
    =================================================== -->
@@ -163,6 +163,7 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
         <script src="js/main.js"></script>  
+        <script src="js/confirm.js"></script>  
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     </body>
 

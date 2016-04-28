@@ -1,5 +1,5 @@
 /*
-PlayToday 2016
+ PlayToday 2016
  */
 package bflows;
 
@@ -12,6 +12,9 @@ import blogics.UserService;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import services.database.DBService;
 import services.database.Database;
@@ -26,6 +29,7 @@ import services.session.SessionType;
  * @author Riccardo
  */
 public class ReservationManagement {
+
     private long id;
     private Date data;
     private Time ora_inizio;
@@ -36,14 +40,17 @@ public class ReservationManagement {
     private long id_user;
     private List<Reservation> resList;
     private String citta;
-    
-    public void getReservationsFromCampo(){
-      Database db = null;
+    private String data_temp;
+    private String ora_inizio_temp;
+    private String ora_fine_temp;
+
+    public void getReservationsFromCampo() {
+        Database db = null;
         try {
-            
+
             db = DBService.getDatabase();
             this.resList = ReservationService.getCurrentReservationFromCampo(db, this.id_campo, this.data);
-            
+
             db.commit();
 
         } catch (NotFoundDBException ex) {
@@ -72,15 +79,21 @@ public class ReservationManagement {
             }
         }
     }
-    
-    public List<Campo> getFreeCampoFromDateTime(){
-      Database db = null;
-      List<Campo> cl = null;
+
+    public List<Campo> getFreeCampoFromDateTime() {
+        Database db = null;
+        List<Campo> cl = null;
         try {
-            
+
             db = DBService.getDatabase();
+            DateFormat formatter;
+            formatter = new SimpleDateFormat("yyyy-MM-dd");
+            this.data = new java.sql.Date(formatter.parse(this.data_temp).getTime());
+            formatter = new SimpleDateFormat("HH.mm");
+            this.ora_inizio =  new java.sql.Time(formatter.parse(this.ora_inizio_temp).getTime());
+            this.ora_fine = new java.sql.Time(formatter.parse(this.ora_fine_temp).getTime());
             cl = ReservationService.getFreeCampiFromDateTime(db, this.data, this.ora_inizio, this.ora_fine, this.citta);
-            
+
             db.commit();
 
         } catch (NotFoundDBException ex) {
@@ -97,7 +110,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "ReservationManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getFreeCampi(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -110,15 +123,15 @@ public class ReservationManagement {
         }
         return cl;
     }
-    
-    public List<Struttura> getStrutturaListFromCity(){
-      Database db = null;
-      List<Struttura> sl = null;
+
+    public List<Struttura> getStrutturaListFromCity() {
+        Database db = null;
+        List<Struttura> sl = null;
         try {
-            
+
             db = DBService.getDatabase();
             sl = StrutturaService.getStrutturaListFromCity(db, this.citta);
-            
+
             db.commit();
 
         } catch (NotFoundDBException ex) {
@@ -148,11 +161,11 @@ public class ReservationManagement {
         }
         return sl;
     }
-    
+
     public void insertReservation() {
         Database db = null;
         try {
-            
+
             db = DBService.getDatabase();
             ReservationService.insertReservation(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user, this.aperta, this.num_partecipanti);
 
@@ -190,11 +203,11 @@ public class ReservationManagement {
             }
         }
     }
-    
-    public void makeCampoUnavailable(){
+
+    public void makeCampoUnavailable() {
         Database db = null;
         try {
-            
+
             db = DBService.getDatabase();
             ReservationService.makeCampoUnavailable(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user);
 
@@ -232,6 +245,32 @@ public class ReservationManagement {
             }
         }
     }
+
+    public String getData_temp() {
+        return data_temp;
+    }
+
+    public void setData_temp(String data_temp) {
+        this.data_temp = data_temp;
+    }
+
+    public String getOra_inizio_temp() {
+        return ora_inizio_temp;
+    }
+
+    public void setOra_inizio_temp(String ora_inizio_temp) {
+        this.ora_inizio_temp = ora_inizio_temp;
+    }
+
+    public String getOra_fine_temp() {
+        return ora_fine_temp;
+    }
+
+    public void setOra_fine_temp(String ora_fine_temp) {
+        this.ora_fine_temp = ora_fine_temp;
+    }
+    
+    
 
     public long getId() {
         return id;
@@ -312,8 +351,5 @@ public class ReservationManagement {
     public void setCitta(String citta) {
         this.citta = citta;
     }
-    
-    
-        
+
 }
-    

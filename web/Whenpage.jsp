@@ -4,6 +4,8 @@
     Author     : Giovanni
 --%>
 
+<%@page import="global.Constants"%>
+<%@page import="services.session.SessionInfo"%>
 <%@page import="services.log.LogTypes"%>
 <%@page import="services.log.Logs"%>
 <%@page import="blogics.Campo"%>
@@ -21,6 +23,34 @@
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 
+<%
+    Cookie[] cookies = request.getCookies();
+    Cookie cookie = null;
+    boolean loggedOn = false;
+    SessionInfo info = null;
+    String status = request.getParameter("status");
+
+    if (cookies != null) {
+        cookie = null;
+        for (Cookie c : cookies) {
+            if (Constants.COOKIE_NAME.equals(c.getName())) {
+                cookie = c;
+            }
+        }
+        if (cookie != null) {
+            info = new SessionInfo(cookie);
+            loggedOn = info.isLoggedon();
+        }else{
+            response.sendRedirect("homepage.jsp");
+        }
+    }
+
+    if (status == null) {
+        status = "view";
+    }
+    reservationManagement.setCitta(info.getCity());
+%>    
+    
     <head>
 
         <!--- Basic Page Needs
@@ -86,33 +116,33 @@
 
                     <!-- Available places -->
 
-                    <h2> Strutture disponibili il data dalle ora alle ora: </h2>
+                    <h2> Strutture disponibili il <%=reservationManagement.getData_temp()%> dalle <%=reservationManagement.getOra_inizio_temp()%> alle <%=reservationManagement.getOra_fine_temp()%>: </h2>
                     <div class="placevisualization"> 
 
 
                         <div>
-                        <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
-                            Campo tmp= new Campo(0,"");
-                            for (Campo c : cl) {
-                                Logs.printLog(LogTypes.DBINFO, "WhenPage-Campo:" + c.getNome() );
-                                int i=0;
-                                if (c.getId_struttura() != tmp.getId_struttura()) {
-                        %>
-                    </div>
+                            <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
+                                Campo tmp = new Campo(0, "");
+                                for (Campo c : cl) {
+                                    Logs.printLog(LogTypes.DBINFO, "WhenPage-Campo:" + c.getNome());
+                                    int i = 0;
+                                    if (c.getId_struttura() != tmp.getId_struttura()) {
+                            %>
+                        </div>
                         <a href="#toggleField<%=i%>" data-toggle="collapse"/><div id="place<%=i%>" attr="<%=i%>" > <%=c.getNome_struttura()%></div>
                         <div id="toggleField<%=i%>" class="collapse">
-                        <%
-                                i++;
+                            <%
+                                    i++;
                                 }
+                            %>
+                            <a href="#"/><div><%=c.getNome()%></div>
+                                <%
+                                        tmp = c;
+                                    }
                                 %>
-                                <a href="#"/><div><%=c.getNome()%></div>
-                        <%
-                                tmp = c;
-                            }
-                        %>
-                    </div>
+                        </div>
 
-                </div>
+                    </div>
             </main>	      
 
         </div><!-- /content-wrap --> 

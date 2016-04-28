@@ -79,6 +79,49 @@ public class ReservationManagement {
             }
         }
     }
+    
+    public void insertReservation() {
+        Database db = null;
+        try {
+
+            db = DBService.getDatabase();
+            DateFormat formatter;
+            formatter = new SimpleDateFormat("yyyy-MM-dd");
+            this.data = new java.sql.Date(formatter.parse(this.data_temp).getTime());
+            formatter = new SimpleDateFormat("HH.mm");
+            this.ora_inizio =  new java.sql.Time(formatter.parse(this.ora_inizio_temp).getTime());
+            this.ora_fine = new java.sql.Time(formatter.parse(this.ora_fine_temp).getTime());
+            ReservationService.insertReservation(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user, this.aperta, this.num_partecipanti);
+
+            db.commit();
+
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+    }
+
 
     public List<Campo> getFreeCampoFromDateTime() {
         Database db = null;
@@ -162,47 +205,7 @@ public class ReservationManagement {
         return sl;
     }
 
-    public void insertReservation() {
-        Database db = null;
-        try {
-
-            db = DBService.getDatabase();
-            ReservationService.insertReservation(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user, this.aperta, this.num_partecipanti);
-
-            db.commit();
-
-        } catch (NotFoundDBException ex) {
-            if (db != null) {
-                db.rollback();
-            }
-            Logs.printLog(LogTypes.ERROR, "Database not found");
-
-        } catch (ResultSetDBException ex) {
-            if (db != null) {
-                db.rollback();
-            }
-            Logs.printLog(LogTypes.ERROR, "ResultSet Error");
-        } catch (SQLException ex) {
-            if (db != null) {
-                db.rollback();
-            }
-            Logs.printLog(LogTypes.ERROR, "SQL Error");
-        } catch (Exception ex) {
-            if (db != null) {
-                db.rollback();
-            }
-            Logs.printLog(LogTypes.ERROR, "UserManagement insertReservation(): Generic Exception: " + ex.getMessage());
-
-        } finally {
-            try {
-                if (db != null) {
-                    db.close();
-                }
-            } catch (NotFoundDBException e) {
-                Logs.printLog(LogTypes.ERROR, "Database not found");
-            }
-        }
-    }
+    
 
     public void makeCampoUnavailable() {
         Database db = null;

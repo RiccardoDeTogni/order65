@@ -8,6 +8,8 @@ package bflows;
 import blogics.*;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.servlet.http.Cookie;
 import services.database.DBService;
@@ -27,7 +29,6 @@ import services.session.SessionType;
  */
 public class UserManagement {
 
-    
     private String insertType;
     private SessionType sType;
     private Cookie cookie;
@@ -40,14 +41,14 @@ public class UserManagement {
     private String city;
     private String surname;
     private String email;
-    private Date reg_date;
+    private String reg_date;
     private int type;
     private Date last_mod;
     private String usrsession;
     private long sport;
     private boolean active;
     private long struttura;
-    
+
     private String tmp_name;
 
     public String getTmp_name() {
@@ -57,8 +58,6 @@ public class UserManagement {
     public void setTmp_name(String tmp_name) {
         this.tmp_name = tmp_name;
     }
-    
-    
 
     public String getInsertType() {
         return insertType;
@@ -156,11 +155,11 @@ public class UserManagement {
         this.email = email;
     }
 
-    public Date getReg_date() {
+    public String getReg_date() {
         return reg_date;
     }
 
-    public void setReg_date(Date reg_date) {
+    public void setReg_date(String reg_date) {
         this.reg_date = reg_date;
     }
 
@@ -212,14 +211,14 @@ public class UserManagement {
         this.struttura = struttura;
     }
 
-    public void addFriend(){
+    public void addFriend() {
         Database db = null;
-        try{
+        try {
             db = DBService.getDatabase();
-            
+
             UserService.addFriend(db, username, id);
-        }catch(NotFoundDBException ex){
-        if (db != null) {
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
                 db.rollback();
             }
             Logs.printLog(LogTypes.ERROR, "Database not found");
@@ -250,15 +249,15 @@ public class UserManagement {
             }
         }
     }
-    
-    public void getFriends(){
+
+    public void getFriends() {
         Database db = null;
-        try{
+        try {
             db = DBService.getDatabase();
-            
+
             UserService.getFriends(db, id);
-        }catch(NotFoundDBException ex){
-        if (db != null) {
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
                 db.rollback();
             }
             Logs.printLog(LogTypes.ERROR, "Database not found");
@@ -289,7 +288,7 @@ public class UserManagement {
             }
         }
     }
-    
+
     public void register() {
         Database db = null;
         try {
@@ -300,6 +299,9 @@ public class UserManagement {
             }
             db = DBService.getDatabase();
             if (sType == SessionType.USER) {
+                DateFormat formatter;
+                formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date data = new java.sql.Date(formatter.parse(this.reg_date).getTime());
                 UserService.insertUser(db, this.username, this.passwd, this.first_name, this.surname, this.email, this.type, this.telephone, this.city, this.struttura, this.sport);
             }
 
@@ -401,8 +403,8 @@ public class UserManagement {
                 db.close();
             } catch (NotFoundDBException e) {
                 if (db != null) {
-                db.rollback();
-            }
+                    db.rollback();
+                }
                 Logs.printLog(LogTypes.ERROR, "Database not found");
             }
         } catch (Exception ex) {
@@ -415,15 +417,15 @@ public class UserManagement {
 
     public void delete() throws NotFoundDBException, ResultSetDBException, SQLException, DuplicatedRecordDBException, Exception {
         Database db = null;
-        try{
-        db = DBService.getDatabase();
-        User usr = UserService.getUser(db, this.username);
-        if (this.info.isLoggedon() && (this.info.getUsrType() == 2 || this.info.getUsrType() == 1)) {
-            usr.delete(db);
-        }
-        db.commit();
-        
-        }catch (Exception ex) {
+        try {
+            db = DBService.getDatabase();
+            User usr = UserService.getUser(db, this.username);
+            if (this.info.isLoggedon() && (this.info.getUsrType() == 2 || this.info.getUsrType() == 1)) {
+                usr.delete(db);
+            }
+            db.commit();
+
+        } catch (Exception ex) {
             if (db != null) {
                 db.rollback();
             }
@@ -440,27 +442,27 @@ public class UserManagement {
     }
 
     /*public void deleteStr() throws NotFoundDBException, ResultSetDBException, SQLException, DuplicatedRecordDBException, Exception {
-        Database db = null;
-        try{
-        db = DBService.getDatabase();
-        Struttura str = StrutturaService.getStruttura(db, this.username);
-        if (this.info.isLoggedon() && (this.info.getUsrType() == 1)) {
-            str.delete(db);
-        }
-        db.commit();
-        }catch (Exception ex) {
-            if (db != null) {
-                db.rollback();
-            }
-            Logs.printLog(LogTypes.ERROR, "UserManagement: DeleteStr(): " + ex.getMessage());
-        }
-        try {
-            db.close();
-        } catch (NotFoundDBException e) {
-            Logs.printLog(LogTypes.ERROR, "Database not found");
-        }
-    }
-    */
+     Database db = null;
+     try{
+     db = DBService.getDatabase();
+     Struttura str = StrutturaService.getStruttura(db, this.username);
+     if (this.info.isLoggedon() && (this.info.getUsrType() == 1)) {
+     str.delete(db);
+     }
+     db.commit();
+     }catch (Exception ex) {
+     if (db != null) {
+     db.rollback();
+     }
+     Logs.printLog(LogTypes.ERROR, "UserManagement: DeleteStr(): " + ex.getMessage());
+     }
+     try {
+     db.close();
+     } catch (NotFoundDBException e) {
+     Logs.printLog(LogTypes.ERROR, "Database not found");
+     }
+     }
+     */
     public List<User> getUserList() {
         List<User> ul = null;
         Database db = null;

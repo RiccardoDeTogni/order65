@@ -124,7 +124,6 @@
                             <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
                                 Campo tmp = new Campo(0, "");
                                 for (Campo c : cl) {
-                                    Logs.printLog(LogTypes.DBINFO, "WhenPage-Campo:" + c.getNome());
                                     int i = 0;
                                     if (c.getId_struttura() != tmp.getId_struttura()) {
                             %>

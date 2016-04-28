@@ -4,6 +4,9 @@
     Author     : Giovanni
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
 <%@page import="java.util.List"%>
 <%@page import="blogics.Struttura"%>
 <%@page import="global.Constants"%>
@@ -80,13 +83,9 @@
         <% List<Struttura> str=reservationManagement.getStrutturaListFromCity(); %>
             
         <script>
-            $(function() {
-    var availableTags = [
-        <% for (Struttura s : str) { %>
-          <%=s.getNome()%>,
-         <%}%>
-    ];
-    $( "#tags" ).autocomplete({
+            (function() {
+    var availableTags = [<% for (Struttura s : str) { %>"<%=s.getNome()%>", <%}%>"prova"];
+    ( "#tags" ).autocomplete({
       source: availableTags
     });
   });
@@ -108,7 +107,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -155,10 +154,9 @@
 
                                 <form id="placesearchform" action="Whenpage.jsp" class="group">
 
-                                    <input type="date" value="oggi" name="DATE" class="date" id="search-DATE" placeholder="Data" required>
-                                    <input type="startime" value="startime" name="STARTIME" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>
-                                    <input type="endtime" value="endtime" name="ENDTIME" class="endtime" id="search-ENDTIME" placeholder="Ora fine" required>
-                                    <input type="hidden" value="city" name="CITY" class="city" id="search-CITY" required>
+                                    <input type="date" value="" name="data" class="date" id="search-DATE" placeholder="Data" required>
+                                    <input type="startime" value="" name="ora_inizio" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>
+                                    <input type="endtime" value="" name="ora_fine" class="endtime" id="search-ENDTIME" placeholder="Ora fine" required>
 
                                     <input type="submit" value="Cerca" name="search" class="button">
 

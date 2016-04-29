@@ -123,8 +123,9 @@
                         <div>
                             <% List<Campo> cl = reservationManagement.getFreeCampoFromDateTime();
                                 Campo tmp = new Campo(0, "");
+                                int i = 1;
                                 for (Campo c : cl) {
-                                    int i = 0;
+                                    
                                     if (c.getId_struttura() != tmp.getId_struttura()) {
                             %>
                         </div>
@@ -132,6 +133,7 @@
                         <div id="toggleField<%=i%>" class="collapse">
                             <%
                                     i++;
+                                    Logs.printLog(LogTypes.DBINFO, " " + i);
                                 }
                             %>
                             <a href="#"/><div id="field" class="field"><%=c.getNome()%></div>

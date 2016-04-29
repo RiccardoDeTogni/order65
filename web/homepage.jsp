@@ -25,6 +25,14 @@
 <jsp:useBean id="logonManagement" scope="page" class="bflows.LogonManagement" />
 <jsp:setProperty name="logonManagement" property="*" />
 
+<!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
+<script type="text/javascript">
+    window.cookieconsent_options = {"message":"Questo sito utilizza cookie per offrire il miglior servizio possibile. Chiudendo questo banner accetti l'utilizzo dei cookie.","dismiss":"Chiudi","learnMore":"Per saperne di più","link":null,"theme":"dark-top"};
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
+<!-- End Cookie Consent plugin -->
+
 <%
     Cookie[] cookies = request.getCookies();
     Cookie cookie = null;

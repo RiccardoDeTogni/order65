@@ -23,34 +23,34 @@
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 
-<%
-    Cookie[] cookies = request.getCookies();
-    Cookie cookie = null;
-    boolean loggedOn = false;
-    SessionInfo info = null;
-    String status = request.getParameter("status");
+    <%
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie = null;
+        boolean loggedOn = false;
+        SessionInfo info = null;
+        String status = request.getParameter("status");
 
-    if (cookies != null) {
-        cookie = null;
-        for (Cookie c : cookies) {
-            if (Constants.COOKIE_NAME.equals(c.getName())) {
-                cookie = c;
+        if (cookies != null) {
+            cookie = null;
+            for (Cookie c : cookies) {
+                if (Constants.COOKIE_NAME.equals(c.getName())) {
+                    cookie = c;
+                }
+            }
+            if (cookie != null) {
+                info = new SessionInfo(cookie);
+                loggedOn = info.isLoggedon();
+            } else {
+                response.sendRedirect("homepage.jsp");
             }
         }
-        if (cookie != null) {
-            info = new SessionInfo(cookie);
-            loggedOn = info.isLoggedon();
-        }else{
-            response.sendRedirect("homepage.jsp");
-        }
-    }
 
-    if (status == null) {
-        status = "view";
-    }
-    reservationManagement.setCitta(info.getCity());
-%>    
-    
+        if (status == null) {
+            status = "view";
+        }
+        reservationManagement.setCitta(info.getCity());
+    %>    
+
     <head>
 
         <!--- Basic Page Needs
@@ -125,7 +125,7 @@
                                 Campo tmp = new Campo(0, "");
                                 int i = 1;
                                 for (Campo c : cl) {
-                                    
+
                                     if (c.getId_struttura() != tmp.getId_struttura()) {
                             %>
                         </div>
@@ -133,14 +133,13 @@
                         <div id="toggleField<%=i%>" class="collapse">
                             <%
                                     i++;
-                                    Logs.printLog(LogTypes.DBINFO, " " + i);
                                 }
                             %>
                             <a href="#"/><div id="field" class="field"><%=c.getNome()%></div>
-                                <%
-                                        tmp = c;
-                                    }
-                                %>
+                            <%
+                                    tmp = c;
+                                }
+                            %>
                         </div>
 
                     </div>
@@ -149,7 +148,7 @@
         </div><!-- /content-wrap --> 
 
 
-        
+
 
         <!-- footer
    =================================================== -->

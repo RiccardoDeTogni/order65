@@ -27,7 +27,7 @@
 
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
-    window.cookieconsent_options = {"message":"Questo sito utilizza cookie per offrire il miglior servizio possibile. Chiudendo questo banner accetti l'utilizzo dei cookie.","dismiss":"Chiudi","learnMore":"Per saperne di più","link":null,"theme":"dark-top"};
+    window.cookieconsent_options = {"message": "Questo sito utilizza cookie per offrire il miglior servizio possibile. Chiudendo questo banner accetti l'utilizzo dei cookie.", "dismiss": "Chiudi", "learnMore": "Per saperne di più", "link": null, "theme": "dark-top"};
 </script>
 
 <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js"></script>
@@ -56,7 +56,7 @@
             loggedOn = info.isLoggedon();
         }
     }
-    
+
     if (status.equals("logon")) {
         logonManagement.logon();
         if ((cookie = logonManagement.getCookie()) != null) {
@@ -79,9 +79,9 @@
         }
         loggedOn = false;
     }
-    
-    %>
-    <html class="no-js" lang="en">
+
+%>
+<html class="no-js" lang="en">
     <head>
 
         <!--- Basic Page Needs
@@ -105,16 +105,15 @@
         =================================================== -->
         <script src="js/modernizr.js"></script>
         <script>
-            function checkPasswordMatch() {
-                var password = $("#register-PASSWORD").val();
-                var confirmPassword = $("#register-CONFIRMPASSWORD").val();
+    function checkPasswordMatch() {
+        var password = $("#register-PASSWORD").val();
+        var confirmPassword = $("#register-CONFIRMPASSWORD").val();
 
-                if (password !== confirmPassword)
-                    alert("Password do not match!");
-            }
+        if (password !== confirmPassword)
+            alert("Password do not match!");
+    }
 
         </script>
-
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
@@ -142,11 +141,12 @@
 
                 <div id="main-content" class="twelve columns">
 
-                    
+
 
 
 
                     <hr>
+
 
 
 
@@ -163,7 +163,7 @@
 
 
                         </form>
-                        
+
                     </div> <!-- /sign-up form -->      
 
 
@@ -178,16 +178,16 @@
                         <!--  <li class="product"><a href="#mod-product">The product PlayToday</a></li> -->
                     </ul>
                 </div><!-- /modal-toggles --> 
-                
+
                 <hr>
                 <h1>Il network di giocatori e campi per le tue partite di calcetto</h1>
-                
-               
 
-               
-               
-               <p> Quante volte non hai trovato il campo o i giocatori per le tue partite di calcetto?<br>Sei stanco di gruppi Whatsapp e telefonate?<br>
-                   PLAYTODAY ti aiuta a trovare gli amici per giocare e prenotare il campo migliore per le tue esigenze in pochi passaggi.<br>
+
+
+
+
+                <p> Quante volte non hai trovato il campo o i giocatori per le tue partite di calcetto?<br>Sei stanco di gruppi Whatsapp e telefonate?<br>
+                    PLAYTODAY ti aiuta a trovare gli amici per giocare e prenotare il campo migliore per le tue esigenze in pochi passaggi.<br>
                     Con PLAYTODAY organizzare le tue partite diventa facile, veloce e divertente.</p>
 
             </main>	      
@@ -337,7 +337,7 @@
 
         </section><!-- /signin -->
 
- <section id="product" >
+        <section id="product" >
 
             <!-- Modal toggle -->
             <div class="modal-toggle">
@@ -357,7 +357,7 @@
                 </div>
 
             </div> <!-- /about-header -->                   	
-           
+
         </section><!-- /product -->
 
 

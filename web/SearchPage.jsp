@@ -37,7 +37,10 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
-        }else{
+            if(!loggedOn){
+                response.sendRedirect("homepage.jsp");
+            }
+        } else {
             response.sendRedirect("homepage.jsp");
         }
     }
@@ -75,21 +78,42 @@
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
 
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-        <% List<Struttura> str=reservationManagement.getStrutturaListFromCity(); %>
-            
+        <% List<Struttura> str = reservationManagement.getStrutturaListFromCity(); %>
+
         <script>
-            (function() {
-    var availableTags = [<% for (Struttura s : str) { %>"<%=s.getNome()%>", <%}%>"prova"];
-    ( "#tags" ).autocomplete({
-      source: availableTags
-    });
-  });
-  </script>
+            $(function () {
+                var availableTags = [<% for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>"prova"];
+                        $("#tags").autocomplete({
+                    source: availableTags
+                });
+            });
+        </script>
+
+
+        <!-- Localizzazione
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+      
+        <script>
+            $.getJSON('https://geoip-db.com/json/geoip.php?jsonp=?') 
+               .done (function(location)
+               {
+                  $('#country').html(location.country_name);
+                  $('#state').html(location.state);
+                  $('#city').html(location.city);
+                  $('#latitude').html(location.latitude);
+                  $('#longitude').html(location.longitude);
+                  $('#ip').html(location.IPv4);               
+               });
+          </script>
+        
+        -->
     </head>
 
     <body>
@@ -137,9 +161,9 @@
 
 
                                 <form id="placesearchform" class="group">
-                                   <!-- <select name="Struttura">
-                                    
-                                    </select> -->
+                                    <!-- <select name="Struttura">
+                                     
+                                     </select> -->
                                     <input type="name" id="tags">
                                     <input type="submit" value="Cerca" name="search" class="button">
 

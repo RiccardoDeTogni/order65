@@ -37,7 +37,7 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
-            if(!loggedOn){
+            if (!loggedOn) {
                 response.sendRedirect("homepage.jsp");
             }
         } else {
@@ -49,6 +49,7 @@
         status = "view";
     }
     reservationManagement.setCitta(info.getCity());
+
 %>
 
 <!DOCTYPE html>
@@ -81,20 +82,12 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-        <% List<Struttura> str = reservationManagement.getStrutturaListFromCity(); %>
 
-        <script>
-            $(function () {
-                var availableTags = [<% for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>"prova"];
-                        $("#tags").autocomplete({
-                    source: availableTags
-                });
-            });
-        </script>
+
+
 
 
         <!-- Localizzazione
@@ -158,7 +151,16 @@
                             <li data-content="where" class="selected"> 
 
                                 <h2>Dove?</h2>
-
+                                <script type="text/javascript">
+                                    var jQuery_1_11_0 = $.noConflict(true);
+                                    jQuery_1_11_0(document).ready(function () {
+                                        var availableTags = [<%List<Struttura> str = reservationManagement.getStrutturaListFromCity();
+                                            for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>"prova"];
+                                                jQuery_1_11_0("#tags").autocomplete({
+                                            source: availableTags
+                                        });
+                                    });
+                                </script>
 
                                 <form id="placesearchform" action="Wherepage.jsp" class="group">
                                     <!-- <select name="Struttura">

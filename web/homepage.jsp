@@ -54,6 +54,7 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
+            
         }
     }
 
@@ -66,11 +67,7 @@
         status = "view";
     }
 
-    if (cookie != null) {
-        info = new SessionInfo(cookie);
-        loggedOn = info.isLoggedon();
-        response.sendRedirect("SearchPage.jsp");
-    }
+   
 
     if (status.equals("logout")) {
         if (loggedOn) {

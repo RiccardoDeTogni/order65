@@ -160,11 +160,11 @@
                                 <h2>Dove?</h2>
 
 
-                                <form id="placesearchform" class="group">
+                                <form id="placesearchform" action="Wherepage.jsp" class="group">
                                     <!-- <select name="Struttura">
                                      
                                      </select> -->
-                                    <input type="name" id="tags">
+                                    <input type="name" id="tags" name="nome">
                                     <input type="submit" value="Cerca" name="search" class="button">
 
 

@@ -37,6 +37,7 @@ public class User implements ILoggableEntity{
     private long sport;
     private boolean active;
     private long struttura;
+    private Date birthdate;
 
     public long getStruttura() {
         return struttura;
@@ -45,6 +46,15 @@ public class User implements ILoggableEntity{
     public void setStruttura(long struttura) {
         this.struttura = struttura;
     }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date bithdate) {
+        this.birthdate = bithdate;
+    }
+    
     
     
 
@@ -82,7 +92,7 @@ public class User implements ILoggableEntity{
     
     
 
-    public User(String username, String passwd, String first_name, String surname, String email, int type, String telephone, String city, long struttura, long sport) throws Exception {
+    public User(String username, String passwd, String first_name, String surname, String email, int type, String telephone, String city, long struttura, long sport, Date birthdate) throws Exception {
         this.first_name = first_name;
         this.username = username;
         this.passwd = Sha512.hashText(Sha512.hashText(passwd));
@@ -93,6 +103,7 @@ public class User implements ILoggableEntity{
         this.city = city;
         this.sport = sport;
         this.struttura = struttura;
+        this.birthdate = birthdate;
         
 
     }
@@ -145,6 +156,11 @@ public class User implements ILoggableEntity{
         }
         try {
             this.last_mod = rs.getDate("last_mod");
+        } catch (SQLException sqle) {
+            Logs.printLog(LogTypes.WARNING, sqle.toString());
+        }
+        try {
+            this.birthdate = rs.getDate("birthdate");
         } catch (SQLException sqle) {
             Logs.printLog(LogTypes.WARNING, sqle.toString());
         }
@@ -276,6 +292,7 @@ public class User implements ILoggableEntity{
                 u.setTelephone(telephone);
                 u.setStruttura(this.struttura);
                 u.setSport(this.sport);
+                u.setBirthdate(this.birthdate);
                 rs.close();
                 u.update(db);
             } else {
@@ -295,7 +312,8 @@ public class User implements ILoggableEntity{
                         + "     sport,"
                         + "     telephone,"
                         + "     city,"
-                        + "     struttura"
+                        + "     struttura,"
+                        + "     birthdate"
                         + " )"
                         + " VALUES"
                         + " ("
@@ -309,6 +327,7 @@ public class User implements ILoggableEntity{
                         + "     ?,"
                         + "     ?,"
                         + "     TRUE,"
+                        + "     ?,"
                         + "     ?,"
                         + "     ?,"
                         + "     ?,"
@@ -328,6 +347,7 @@ public class User implements ILoggableEntity{
                 ps.setString(10, this.telephone);
                 ps.setString(11, this.city);
                 ps.setLong(12, this.struttura);
+                ps.setDate(12, this.birthdate);
 
                 db.modify(ps);
             }
@@ -371,7 +391,8 @@ public class User implements ILoggableEntity{
                 + "     sport = ?,"
                 + "     fl_active = ?,"
                 + "     telephone = ?,"
-                + "     city = ?"
+                + "     city = ?,"
+                + "     birthdate = ?"
                 + " WHERE"
                 + "     ID = ?";
 
@@ -388,7 +409,8 @@ public class User implements ILoggableEntity{
         ps.setBoolean(9, this.active);
         ps.setString(10, this.telephone);
         ps.setString(11, this.city);
-        ps.setLong(12, this.id);
+        ps.setDate(12, this.birthdate);
+        ps.setLong(13, this.id);
         db.modify(ps);
     }
 

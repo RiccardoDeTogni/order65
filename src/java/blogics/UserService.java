@@ -18,8 +18,8 @@ import util.*;
 
 public class UserService {
 
-    public static User insertUser(Database db, String username, String passwd, String first_name, String surname, String email, int type, String telephone, String city, long struttura, long sport) throws Exception {
-        User user = new User(username, passwd, first_name, surname, email, type, telephone, city, struttura, sport);
+    public static User insertUser(Database db, String username, String passwd, String first_name, String surname, String email, int type, String telephone, String city, long struttura, long sport, Date birthdate) throws Exception {
+        User user = new User(username, passwd, first_name, surname, email, type, telephone, city, struttura, sport, birthdate);
         user.insert(db);
         return user;
     }

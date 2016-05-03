@@ -73,7 +73,7 @@
         ================================================== -->
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
-        <link rel="stylesheet" href="css/homepage.css">    
+        <!--<link rel="stylesheet" href="css/homepage.css">-->    
         <link rel="stylesheet" href="css/search.css">   
         <!-- Modernizr
         =================================================== -->
@@ -84,13 +84,14 @@
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-        <%List<Struttura> str = reservationManagement.getStrutturaListFromCity();%>
+        
         <!-- Autocomplete Script -->
         <script type="text/javascript">
 
             var jQuery_1_11_0 = $.noConflict(true);
             jQuery_1_11_0(document).ready(function () {
-                var availableTags = [<%for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>""];
+                var availableTags = [<%List<Struttura> str = reservationManagement.getStrutturaListFromCity();
+                    for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>""];
                         jQuery_1_11_0("#tags").autocomplete({
                     source: availableTags
                 });

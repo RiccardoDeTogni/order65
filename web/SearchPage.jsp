@@ -37,7 +37,7 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
-            if(!loggedOn){
+            if (!loggedOn) {
                 response.sendRedirect("homepage.jsp");
             }
         } else {
@@ -73,7 +73,7 @@
         ================================================== -->
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
-        <link rel="stylesheet" href="css/homepage.css">    
+        <!--<link rel="stylesheet" href="css/homepage.css">-->    
         <link rel="stylesheet" href="css/search.css">   
         <!-- Modernizr
         =================================================== -->
@@ -81,20 +81,23 @@
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-        <% List<Struttura> str = reservationManagement.getStrutturaListFromCity(); %>
+        
+        <!-- Autocomplete Script -->
+        <script type="text/javascript">
 
-        <script>
-            $(function () {
-                var availableTags = [<% for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>"prova"];
-                        $("#tags").autocomplete({
+            var jQuery_1_11_0 = $.noConflict(true);
+            jQuery_1_11_0(document).ready(function () {
+                var availableTags = [<%List<Struttura> str = reservationManagement.getStrutturaListFromCity();
+                    for (Struttura s : str) {%>"<%=s.getNome()%>", <%}%>""];
+                        jQuery_1_11_0("#tags").autocomplete({
                     source: availableTags
                 });
             });
         </script>
+
 
 
         <!-- Localizzazione
@@ -158,7 +161,6 @@
                             <li data-content="where" class="selected"> 
 
                                 <h2>Dove?</h2>
-
 
                                 <form id="placesearchform" action="Wherepage.jsp" class="group">
                                     <!-- <select name="Struttura">

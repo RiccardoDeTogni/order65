@@ -48,9 +48,16 @@
         if (status == null) {
             status = "view";
         }
+        
+        
         reservationManagement.setCitta(info.getCity());
     %>    
 
+    <script>
+        function reserv(idcampo){
+            document.getElementById("campo").value = idcampo;
+        }
+    </script>
     <head>
 
         <!--- Basic Page Needs
@@ -135,18 +142,19 @@
                                     i++;
                                 }
                             %>
-                            <div id="field" class="field" onClick="reserv(<%=c.getId()%>)"><%=c.getNome()%></div>
+                            <a href="#"/><div id="field" onClick="reserv(<%=c.getId()%>)" class="field" ><%=c.getNome()%></div>
                             <%
                                     tmp = c;
                                 }
                             %>
                         </div>
-                        <form action="Whenpage.jsp" method="post" >
+                        <form id="insertReservation" action="homepage.jsp" method="get" >
                             <input type="hidden" id="start" name="ora_inizio_temp" value="<%=reservationManagement.getOra_inizio_temp()%>">
                             <input type="hidden" id="end" name="ora_fine_temp" value="<%=reservationManagement.getOra_fine_temp()%>">
                             <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">
-                            <input type="hidden" id="campo" name="id_campo" value=""> 
-                            <input type="hidden" name="id_user" value="<%=info.getUsername()%>">
+                            <input type="hidden" id="campo" name="id_campo" value="">
+                            <input type="hidden" name="status" value="insertReservation">
+                            <input type="hidden" name="id_user" value="<%=info.getId()%>">
                         </form>
                     </div>
             </main>	      

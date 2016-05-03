@@ -110,7 +110,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "UserManagement insertReservation(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {

@@ -25,6 +25,8 @@
 <jsp:useBean id="logonManagement" scope="page" class="bflows.LogonManagement" />
 <jsp:setProperty name="logonManagement" property="*" />
 
+<jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
+<jsp:setProperty name="reservationManagement" property="*" />
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
     window.cookieconsent_options = {"message": "Questo sito utilizza cookie per offrire il miglior servizio possibile. Chiudendo questo banner accetti l'utilizzo dei cookie.", "dismiss": "Chiudi", "learnMore": "Per saperne di più", "link": null, "theme": "dark-top"};
@@ -77,6 +79,10 @@
         }
         loggedOn = false;
     }
+    
+    if (status.equals("insertReservation")){
+            reservationManagement.insertReservation();
+        }
 
 %>
 <html class="no-js" lang="en">

@@ -87,8 +87,8 @@ public class Reservation {
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ps.setDate(1, this.data);
         ps.setTime(2, ora_inizio);
-        ps.setTime(2, ora_fine);
-        ps.setLong(3, id_campo);
+        ps.setTime(3, ora_fine);
+        ps.setLong(4, id_campo);
         rs = db.select(ps);
         try{
             boolean exist = rs.next();
@@ -97,7 +97,7 @@ public class Reservation {
             }
             else{
             sql = "INSERT INTO"
-                    + "prenotazione"
+                    + " prenotazione"
                     + "("
                     + "data,"
                     + "ora_inizio,"

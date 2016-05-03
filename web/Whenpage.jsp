@@ -135,7 +135,7 @@
                                     i++;
                                 }
                             %>
-                            <a href="#"/><div id="field" class="field"><%=c.getNome()%></div>
+                            <div id="field" class="field" onClick="confirm(<%=c.getId()%>)"><%=c.getNome()%></div>
                             <%
                                     tmp = c;
                                 }

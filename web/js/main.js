@@ -102,21 +102,17 @@
    
    
    
-    function confirm(start, end, date){
+    function confirm(campo){
 
-                var start=start;
-                var end=end;
-                var date=date;
+                var campo=campo;
 		$.confirm({
 			'title'		: 'Conferma prenotazione',
 			'message'	: 'Desideri confermare la prenotazione relativa a questo campo?',
 			'buttons'	: {
 				'Conferma'	: {
 					'class'	: 'blue',
-					'action': function(start, end, date){
-                                            $("#start").val(start);
-                                            $("#end").val(end);
-                                            $("#date").val(date);
+					'action': function(campo){
+                                            $("#campo").val(campo);
 					}
 				},
 				'Annulla'	: {

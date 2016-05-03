@@ -98,7 +98,11 @@
             });
         </script>
 
-
+        <script type="text/javascript">
+                function dropDown() {
+                 document.getElementById("dropmenu").classList.toggle("show");
+                }
+        </script>
 
         <!-- Localizzazione
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -131,7 +135,22 @@
 
             <!-- main  -->
             <main class="row">
-
+                    
+                <div class="dropdown">
+                    <button onclick="dropDown()" class="dropbtn"/>
+                        <div id="dropmenu" class="dropdown-content">
+                            <p><%=info.getUsername()%></P>
+                        <a href="#">Il mio profilo</a>
+                        <% if((info.getUsrType())==1){%>
+                        <a href="Prenotazioni.jsp">Le mie prenotazioni</a>
+                         <% } else { %>
+                         <a href="Struttura.jsp">La mia struttura</a>
+                         <%}%>
+                        <a href="homepage.jsp?USERNAME=<%=info.getUsername()%>&status=logout">Logout</a>
+                    </div>
+                </div>   
+                
+                
                 <header class="site-header">
                     <div class="logo">
                         <a href="homepage.jsp">PlayToday.</a>
@@ -144,7 +163,7 @@
 
 
 
-               
+                            
 
 
 

@@ -145,6 +145,7 @@
                             <input type="hidden" id="start" name="ora_inizio_temp" value="<%=reservationManagement.getOra_inizio_temp()%>">
                             <input type="hidden" id="end" name="ora_fine_temp" value="<%=reservationManagement.getOra_fine_temp()%>">
                             <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">
+                            <input type="hidden" id="campo" name="id_campo" value=""> 
                             <input type="hidden" name="id_user" value="<%=info.getUsername()%>">
                         </form>
                     </div>

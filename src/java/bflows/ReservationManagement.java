@@ -80,8 +80,9 @@ public class ReservationManagement {
         }
     }
     
-    public void insertReservation() {
+    public Reservation insertReservation() {
         Database db = null;
+        Reservation res = null;
         try {
 
             db = DBService.getDatabase();
@@ -91,7 +92,7 @@ public class ReservationManagement {
             formatter = new SimpleDateFormat("HH.mm");
             this.ora_inizio =  new java.sql.Time(formatter.parse(this.ora_inizio_temp).getTime());
             this.ora_fine = new java.sql.Time(formatter.parse(this.ora_fine_temp).getTime());
-            ReservationService.insertReservation(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user, this.aperta, this.num_partecipanti);
+            res = ReservationService.insertReservation(db, this.data, this.ora_inizio, this.ora_fine, this.id_campo, this.id_user, this.aperta, this.num_partecipanti);
 
             db.commit();
 
@@ -120,6 +121,7 @@ public class ReservationManagement {
                 Logs.printLog(LogTypes.ERROR, "Database not found");
             }
         }
+        return res;
     }
 
 

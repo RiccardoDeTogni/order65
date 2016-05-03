@@ -102,16 +102,21 @@
    
    
    
-    $('.field').click(function(){
+    function confirm(start, end, date){
 
-
+                var start=start;
+                var end=end;
+                var date=date;
 		$.confirm({
 			'title'		: 'Conferma prenotazione',
 			'message'	: 'Desideri confermare la prenotazione relativa a questo campo?',
 			'buttons'	: {
 				'Conferma'	: {
 					'class'	: 'blue',
-					'action': function(){
+					'action': function(start, end, date){
+                                            $("#start").val(start);
+                                            $("#end").val(end);
+                                            $("#date").val(date);
 					}
 				},
 				'Annulla'	: {
@@ -121,7 +126,7 @@
 			}
 		});
 
-	});
+	};
 
     $('.placevisualization a').on('click', 'a', function(e) {
 

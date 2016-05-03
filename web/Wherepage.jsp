@@ -33,7 +33,7 @@
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">    
-        <link rel="stylesheet" href="css/when.css">   
+        <link rel="stylesheet" href="css/where.css">   
 
         <!-- Modernizr
         =================================================== -->
@@ -84,7 +84,7 @@
                     <div id="slots">
                         
                             <%for(int i=7;i<24;i++){%>
-                            <div id="slot<%=i%>">Slot <%=i%>.00-<%=(i+1)%>.00</div>
+                            <div id="slot">Slot <%=i%>.00-<%=(i+1)%>.00</div>
                                 
                             <%}%> 
                     </div>

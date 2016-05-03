@@ -954,6 +954,7 @@ main .site-header .logo a {
 }
 .tabs li {
   float: left;
+  background: trasparent !important;
   
 }
 .tabs a {

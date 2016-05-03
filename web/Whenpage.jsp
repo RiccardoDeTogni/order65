@@ -141,7 +141,12 @@
                                 }
                             %>
                         </div>
-
+                        <form action="Whenpage.jsp" method="post" >
+                            <input type="hidden" id="start" name="ora_inizio_temp" value="">
+                            <input type="hidden" id="end" name="ora_fine_temp" value="">
+                            <input type="hidden" id="date" name="data_temp" value="">
+                            <input type="hidden" name="id_user" value="<%=info.getUsername()%>">
+                        </form>
                     </div>
             </main>	      
 

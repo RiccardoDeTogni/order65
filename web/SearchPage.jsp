@@ -73,7 +73,7 @@
         ================================================== -->
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
-        <!--<link rel="stylesheet" href="css/homepage.css">-->    
+        <link rel="stylesheet" href="css/homepage.css">  
         <link rel="stylesheet" href="css/search.css">   
         <!-- Modernizr
         =================================================== -->
@@ -140,11 +140,11 @@
 
                 <div id="main-content" class="twelve columns">
 
-                    <h1>PlayToday</h1>
+                  
 
 
 
-                    <hr>
+               
 
 
 

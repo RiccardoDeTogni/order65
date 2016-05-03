@@ -135,7 +135,7 @@
                                     i++;
                                 }
                             %>
-                            <div id="field" class="field" onClick="confirm(<%=c.getId()%>)"><%=c.getNome()%></div>
+                            <div id="field" class="field" onClick="reserv(<%=c.getId()%>)"><%=c.getNome()%></div>
                             <%
                                     tmp = c;
                                 }

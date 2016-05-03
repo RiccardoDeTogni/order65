@@ -102,7 +102,7 @@
    
    
    
-    function confirm(campo){
+    function reserv(campo){
 
                 var campo=campo;
 		$.confirm({

@@ -33,6 +33,9 @@ public class Constants {
     public static final String PASSWORD = "tttpwd314";
     public static final String SMTP_PORT = "587";
     
+    public static final int MIN = 10000;
+    public static final int MAX = 99999;
+    
     public static final String ADMIN_MAIL = "detogni.riccardo@gmail.com";
     
 }

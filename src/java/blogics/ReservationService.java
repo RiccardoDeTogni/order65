@@ -83,7 +83,7 @@ public class ReservationService {
        
    }
    
-   public static void removeReservation(Database db, Reservation res) throws SQLException{
+   public static void deleteReservation(Database db, Reservation res) throws SQLException{
        String sql = "DELETE FROM prenotazione WHERE id_user = ? AND date = ? AND ora_inizio = ? AND ora_fine = ?";
        PreparedStatement ps = db.getConnection().prepareStatement(sql);
        ps.setLong(1, res.getId_user());
@@ -106,6 +106,23 @@ public class ReservationService {
             resList.add(new Reservation(rs));
         }
         return resList;
+   }
+   
+   public static Reservation getReservation(Database db, long code, long user_id) throws SQLException, NotFoundDBException{
+       ResultSet rs = null;
+       Reservation res = null;
+       String sql = "SELECT *"
+                       + "  FROM prenotazione"
+                       + "  WHERE id_user = ? AND code = ?"
+                       + "  data >= CURDATE()";
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, user_id);
+        ps.setLong(2, code);
+        rs = db.select(ps);
+        if(rs.next()){
+            res = new Reservation(rs);
+        }
+        return res;
    }
    
 

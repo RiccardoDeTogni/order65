@@ -68,7 +68,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -89,7 +89,7 @@ public class ReservationManagement {
 
             db = DBService.getDatabase();
             c = CampoService.getCampo(db, this.id_campo);
-            
+            c.setNome_struttura(StrutturaService.getStrutturaFromCampoId(db, c.getId()).getNome());
             db.commit();
 
         } catch (NotFoundDBException ex) {
@@ -106,7 +106,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getNomeCampo&Struttura(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -117,7 +117,7 @@ public class ReservationManagement {
                 Logs.printLog(LogTypes.ERROR, "Database not found");
             }
         }
-        return c.getNome();
+        return c;
     }
     
     public List<Reservation> getReservationsFromUser() {
@@ -145,7 +145,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getReservationFromUser(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -189,7 +189,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement insertReservation(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement insertReservation(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -272,7 +272,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getStrutturaListFromCity(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {
@@ -317,7 +317,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "UserManagement register(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement makeCampoUnavailable(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {

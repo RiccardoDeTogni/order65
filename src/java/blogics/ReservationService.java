@@ -98,7 +98,7 @@ public class ReservationService {
        String sql = "SELECT *"
                        + "  FROM prenotazione"
                        + "  WHERE id_user = ? AND"
-                       + "  data > NOW()";
+                       + "  data >= CURDATE()";
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ps.setLong(1, user_id);
         rs = db.select(ps);

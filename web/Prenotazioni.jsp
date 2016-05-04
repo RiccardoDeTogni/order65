@@ -4,6 +4,9 @@
     Author     : Giovanni
 --%>
 
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
+<%@page import="blogics.Campo"%>
 <%@page import="blogics.Reservation"%>
 <%@page import="java.util.List"%>
 <%@page import="global.Constants"%>
@@ -109,14 +112,21 @@
 
                     <h1> Le mie prenotazioni </h1>
 
-                    <% List<Reservation> resList = reservationManagement.getReservationsFromUser();
+                    <% reservationManagement.setId_user(info.getId());
+                        List<Reservation> resList = reservationManagement.getReservationsFromUser();
                         int i = 0;
                         for (Reservation res : resList) {
                             i++;
                     %>
 
-                    <div id="field<%=i%>"> Dettagli prenotazione: <button id="delete">X</button>
-                        
+                    <div id="field<%=i%>" > Dettagli prenotazione:
+                        <% reservationManagement.setId_campo(res.getId_campo());
+                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
+                            Struttura: <%=c.getNome_struttura()%><br/>
+                            Campo: <%=c.getNome()%><br/>
+                            Data: <%=res.getData()%>
+                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%>
+                            <button id="delete">X</button><!-- Gingillo qui devi metterci il banner di conferma -->
                     </div>
                     <%}%>
 
@@ -128,7 +138,7 @@
 
 
 
-                </div>
+                    </div>
             </main>	      
 
         </div><!-- /content-wrap --> 

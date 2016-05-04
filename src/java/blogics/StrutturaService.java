@@ -40,4 +40,29 @@ public class StrutturaService {
         }
     }
     
+    public static Struttura getStrutturaFromCampoId(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        Struttura struttura = null;
+
+        String sql = " SELECT * "
+                + "   FROM struttura "
+                + " WHERE id = ?";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                struttura = new Struttura(resultSet);
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("StrutturaService: getStrutturaFromCampoId():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return struttura;
+
+    } 
+    
 }

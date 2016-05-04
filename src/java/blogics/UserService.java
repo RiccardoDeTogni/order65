@@ -49,6 +49,32 @@ public class UserService {
         return user;
 
     }
+    
+    public static User getUser(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        User user = null;
+
+        String sql = " SELECT * "
+                + "   FROM user AS u"
+                + " WHERE "
+                + "   u.id = ? ";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                user = new User(resultSet);
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("UserService: getUser():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return user;
+
+    }
 
     public static List<User> getUserList(Database db) throws SQLException, NotFoundDBException, ResultSetDBException {
         List<User> ul = new ArrayList<>();

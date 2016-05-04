@@ -4,6 +4,7 @@
 package bflows;
 
 import blogics.Campo;
+import blogics.CampoService;
 import blogics.Reservation;
 import blogics.ReservationService;
 import blogics.Struttura;
@@ -81,6 +82,44 @@ public class ReservationManagement {
         return resList;
     }
     
+    public Campo getNomeCampo_StrutturaFromId() {
+        Database db = null;
+        Campo c = null;
+        try {
+
+            db = DBService.getDatabase();
+            c = CampoService.getCampo(db, this.id_campo);
+            
+            db.commit();
+
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+        return c.getNome();
+    }
+    
     public List<Reservation> getReservationsFromUser() {
         Database db = null;
         List<Reservation> resList = null;
@@ -88,6 +127,7 @@ public class ReservationManagement {
 
             db = DBService.getDatabase();
             resList = ReservationService.getCurrentReservationFromUser(db, this.id_user);
+            
 
             db.commit();
 

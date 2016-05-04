@@ -38,4 +38,30 @@ public class CampoService {
             throw new ResultSetDBException("UserService: getUserList():  ResultSetDBException: " + ex.getMessage(), db);
         }
     }
+    
+    public static Campo getCampo(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        Campo campo = null;
+
+        String sql = " SELECT * "
+                + "   FROM campo AS c"
+                + " WHERE "
+                + "   c.id = ? ";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                campo = new Campo(resultSet);
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("UserService: getUser():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return campo;
+
+    }
     }

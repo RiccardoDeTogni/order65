@@ -92,5 +92,21 @@ public class ReservationService {
        ps.setTime(4, res.getOra_fine());
    }
    
+   public static List<Reservation> getCurrentReservationFromUser(Database db, long user_id) throws SQLException, NotFoundDBException{
+       List<Reservation> resList = new ArrayList();
+       ResultSet rs = null;
+       String sql = "SELECT *"
+                       + "  FROM prenotazione"
+                       + "  WHERE id_user = ? AND"
+                       + "  data > NOW()";
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, user_id);
+        rs = db.select(ps);
+        while(rs.next()){
+            resList.add(new Reservation(rs));
+        }
+        return resList;
+   }
+   
 
 }

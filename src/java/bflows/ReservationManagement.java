@@ -38,18 +38,18 @@ public class ReservationManagement {
     private boolean aperta;
     private int num_partecipanti;
     private long id_user;
-    private List<Reservation> resList;
     private String citta;
     private String data_temp;
     private String ora_inizio_temp;
     private String ora_fine_temp;
 
-    public void getReservationsFromCampo() {
+    public List<Reservation> getReservationsFromCampo() {
         Database db = null;
+        List<Reservation> resList = null;
         try {
 
             db = DBService.getDatabase();
-            this.resList = ReservationService.getCurrentReservationFromCampo(db, this.id_campo, this.data);
+            resList = ReservationService.getCurrentReservationFromCampo(db, this.id_campo, this.data);
 
             db.commit();
 
@@ -78,6 +78,45 @@ public class ReservationManagement {
                 Logs.printLog(LogTypes.ERROR, "Database not found");
             }
         }
+        return resList;
+    }
+    
+    public List<Reservation> getReservationsFromUser() {
+        Database db = null;
+        List<Reservation> resList = null;
+        try {
+
+            db = DBService.getDatabase();
+            resList = ReservationService.getCurrentReservationFromUser(db, this.id_user);
+
+            db.commit();
+
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement getReservationFromCampo(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+        return resList;
     }
     
     public Reservation insertReservation() {
@@ -339,14 +378,6 @@ public class ReservationManagement {
 
     public void setId_user(long id_user) {
         this.id_user = id_user;
-    }
-
-    public List<Reservation> getResList() {
-        return resList;
-    }
-
-    public void setResList(List<Reservation> resList) {
-        this.resList = resList;
     }
 
     public String getCitta() {

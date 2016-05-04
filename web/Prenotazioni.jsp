@@ -4,17 +4,56 @@
     Author     : Giovanni
 --%>
 
+<%@page import="blogics.Reservation"%>
+<%@page import="java.util.List"%>
+<%@page import="global.Constants"%>
+<%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page info="Prenotazioni Page" %>
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 
+<jsp:useBean id="logonManagement" scope="page" class="bflows.LogonManagement" />
+<jsp:setProperty name="logonManagement" property="*" />
+
+<jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
+<jsp:setProperty name="reservationManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+    <%
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie = null;
+        boolean loggedOn = false;
+        SessionInfo info = null;
+        String status = request.getParameter("status");
 
+        if (cookies != null) {
+            cookie = null;
+            for (Cookie c : cookies) {
+                if (Constants.COOKIE_NAME.equals(c.getName())) {
+                    cookie = c;
+                }
+            }
+            if (cookie != null) {
+                info = new SessionInfo(cookie);
+                loggedOn = info.isLoggedon();
+            } else {
+                response.sendRedirect("homepage.jsp");
+            }
+        }
+
+        if (status == null) {
+            status = "view";
+        }
+
+        reservationManagement.setCitta(info.getCity());
+    %>
     <head>
 
         <!--- Basic Page Needs
@@ -69,21 +108,25 @@
                 <div id="main-content" class="twelve columns">
 
                     <h1> Le mie prenotazioni </h1>
-                    
-                    <% for(int i=0; i<10;i++) {%>
-                    
-                    <div id="field<%=i%>"> Dettagli prenotazione <button id="delete">X</button>
 
+                    <% List<Reservation> resList = reservationManagement.getReservationsFromUser();
+                        int i = 0;
+                        for (Reservation res : resList) {
+                            i++;
+                    %>
 
-                           <%}%>
-
-              
-
-                   
-
-
+                    <div id="field<%=i%>"> Dettagli prenotazione: <button id="delete">X</button>
                         
                     </div>
+                    <%}%>
+
+
+
+
+
+
+
+
 
                 </div>
             </main>	      

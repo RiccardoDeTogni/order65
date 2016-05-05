@@ -124,7 +124,7 @@
                     </div>
                             <a href="#">Stampa la prenotazione</a>
                             <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
-                            <div id="ricerca">Effettua un'altra ricerca</div>
+                            <a href="Searchpage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
                     <%}%>
 
 

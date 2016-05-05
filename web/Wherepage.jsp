@@ -61,7 +61,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -80,7 +80,14 @@
                     <!-- Available places -->
 
                     <h2> Calendario per nome struttura: </h2>
-                    <div id="calendar"> </div>
+                    <div id="calendar">
+                        <ul>
+                            <li>frecciasinistra</li>
+                            <%for(int i=0; i<3; i++){%>
+                            <li id="datequalcosa">Data<%=i%></br>x posti disponibili </li>
+                            <%}%>
+                            <li>frecciadestra</li>
+                        </ul>
                     <div id="slots">
                         
                             <%for(int i=7;i<24;i++){%>

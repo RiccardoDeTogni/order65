@@ -148,7 +148,7 @@
                                 }
                             %>
                         </div>
-                        <form id="insertReservation" action="homepage.jsp" method="get" >
+                        <form id="insertReservation" action="landingpage.jsp" method="get" >
                             <input type="hidden" id="start" name="ora_inizio_temp" value="<%=reservationManagement.getOra_inizio_temp()%>">
                             <input type="hidden" id="end" name="ora_fine_temp" value="<%=reservationManagement.getOra_fine_temp()%>">
                             <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">

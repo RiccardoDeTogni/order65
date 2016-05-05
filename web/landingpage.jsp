@@ -56,6 +56,10 @@
         }
 
         reservationManagement.setCitta(info.getCity());
+        
+        if (status.equals("insertReservation")){
+            reservationManagement.insertReservation();
+        }
     %>
     <head>
 
@@ -104,7 +108,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -113,19 +117,18 @@
                     <h1> Prenotazione effettuata correttamente! </h1>
 
                     
-                    <div id="prenotazione" > Dettagli prenotazione:
-                        <%// reservationManagement.setId_campo(res.getId_campo());
-                            //Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
-                            Struttura: <%=//c.getNome_struttura()%><br/>
-                            Campo: <%=//c.getNome()%><br/>
-                            Data: <%=//res.getData()%>
-                            Orario: <%=//res.getOra_inizio()%>-<%=//res.getOra_fine()%>
+                    <div id="prenotazione" > Dettagli prenotazione:<br/>
+                        <% 
+                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
+                            Struttura: <%=c.getNome_struttura()%><br/>
+                            Campo: <%=c.getNome()%><br/>
+                            Data: <%=reservationManagement.getData()%>
+                            Orario: <%=reservationManagement.getOra_inizio()%>-<%=reservationManagement.getOra_fine()%><br/>
                             Codice Prenotazione: 
                     </div>
                             <a href="#">Stampa la prenotazione</a>
                             <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
                             <div id="ricerca">Effettua un'altra ricerca</div>
-                    <%}%>
 
 
 

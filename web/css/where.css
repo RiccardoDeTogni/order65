@@ -25,7 +25,21 @@
 /*
 /* =================================================================== */
 
-
+#datebar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#datebar li {
+    padding:0;
+    margin:0 0 10px 0 !important;
+    border:dashed #44d62c;
+    border-width:0px 2px;
+    background-color:rgba(255, 255, 255, 0.1);
+    color: #44d62c;
+    display:inline-block;
+    
+}
 #slot {
     clear:both;
 	font-size: 12px;

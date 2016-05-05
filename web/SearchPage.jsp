@@ -71,10 +71,11 @@
 
         <!-- CSS
         ================================================== -->
+        <link rel="stylesheet" href="css/search.css">   
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">  
-        <link rel="stylesheet" href="css/search.css">   
+        
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>

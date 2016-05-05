@@ -198,6 +198,7 @@
   transition: opacity .3s 0s, visibility 0s .3s;
 }
 .search nav {
+    width:100%;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   
@@ -224,7 +225,7 @@
   }
 }
 
-.tabs {
+#nav .tabs {
   width: 100%;
  
 }
@@ -243,7 +244,10 @@
   clear: both;
 }
 .tabs li {
+   text-align: center;
+  width:auto;
   float: left;
+  display: table-cell !important;
   background: transparent !important;
   
 }
@@ -253,7 +257,7 @@
   height: 100%;
   width: 100%;
   text-align: center;
-  font-size: 200px;
+  font-size: 30px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 700;
@@ -326,6 +330,7 @@
 
 .contents ul {
     list-style: none;
+    clear:both;
 }
 .contents li {
   display: none;

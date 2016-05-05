@@ -81,13 +81,14 @@
 
                     <h2> Calendario per nome struttura: </h2>
                     <div id="calendar">
-                        <ul>
+                        <ul id="datebar">
                             <li>frecciasinistra</li>
                             <%for(int i=0; i<3; i++){%>
                             <li id="datequalcosa">Data<%=i%></br>x posti disponibili </li>
                             <%}%>
                             <li>frecciadestra</li>
                         </ul>
+                            <hr>
                     <div id="slots">
                         
                             <%for(int i=7;i<24;i++){%>

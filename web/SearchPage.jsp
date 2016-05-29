@@ -141,7 +141,7 @@
                     <button onclick="dropDown()" class="dropbtn"/>
                         <div id="dropmenu" class="dropdown-content">
                             <p><%=info.getUsername()%></P>
-                        <a href="#">Il mio profilo</a>
+                        <a href="Profilo.jsp">Il mio profilo</a>
                         <% if((info.getUsrType())==1){%>
                         <a href="Prenotazioni.jsp">Le mie prenotazioni</a>
                          <% } else { %>

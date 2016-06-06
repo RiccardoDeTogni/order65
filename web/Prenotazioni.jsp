@@ -126,7 +126,7 @@
                             Campo: <%=c.getNome()%><br/>
                             Data: <%=res.getData()%>
                             Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%>
-                            Codice Prenotazione: 
+                            Codice Prenotazione: <%=res.getCode()%>
                             <button id="delete">X</button><!-- Gingillo qui devi metterci il banner di conferma -->
                     </div>
                     <%}%>

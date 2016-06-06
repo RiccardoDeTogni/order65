@@ -32,6 +32,7 @@
     <%
         Cookie[] cookies = request.getCookies();
         Cookie cookie = null;
+        Reservation res = null;
         boolean loggedOn = false;
         SessionInfo info = null;
         String status = request.getParameter("status");
@@ -58,7 +59,7 @@
         reservationManagement.setCitta(info.getCity());
         
         if (status.equals("insertReservation")){
-            reservationManagement.insertReservation();
+            res = reservationManagement.insertReservation();
         }
     %>
     <head>
@@ -122,13 +123,13 @@
                             Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
                             Struttura: <%=c.getNome_struttura()%><br/>
                             Campo: <%=c.getNome()%><br/>
-                            Data: <%=reservationManagement.getData()%>
-                            Orario: <%=reservationManagement.getOra_inizio()%>-<%=reservationManagement.getOra_fine()%><br/>
-                            Codice Prenotazione: 
+                            Data: <%=res.getData()%>
+                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
+                            Codice Prenotazione: <%=res.getCode()%> 
                     </div>
                             <a href="#">Stampa la prenotazione</a>
                             <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
-                            <a href="Searchpage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
+                            <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
                     
 
 

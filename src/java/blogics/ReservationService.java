@@ -11,6 +11,8 @@ import java.util.List;
 import services.database.Database;
 import services.database.exceptions.NotFoundDBException;
 import services.database.exceptions.ResultSetDBException;
+import services.log.LogTypes;
+import services.log.Logs;
 import util.DateUtils;
 
 /**

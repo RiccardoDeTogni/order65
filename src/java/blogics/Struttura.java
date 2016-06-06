@@ -22,6 +22,33 @@ public class Struttura {
     private long id_user;
     private String citta;
     private boolean active;
+    private String indirizzo;
+    private String latitude;
+    private String longitude;
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
+
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 
     public long getId() {
         return id;
@@ -73,6 +100,21 @@ public class Struttura {
             }
         try {
             this.nome = rs.getString("name");
+        } catch (SQLException sqle) {
+            Logs.printLog(LogTypes.WARNING, sqle.toString());
+        }
+        try {
+            this.indirizzo = rs.getString("indirizzo");
+        } catch (SQLException sqle) {
+            Logs.printLog(LogTypes.WARNING, sqle.toString());
+        }
+        try {
+            this.latitude = rs.getString("latitude");
+        } catch (SQLException sqle) {
+            Logs.printLog(LogTypes.WARNING, sqle.toString());
+        }
+        try {
+            this.longitude = rs.getString("longitude");
         } catch (SQLException sqle) {
             Logs.printLog(LogTypes.WARNING, sqle.toString());
         }

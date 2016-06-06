@@ -129,6 +129,7 @@ public class Reservation {
                         + "?"
                         + ")";
                 ps = db.getConnection().prepareStatement(sql);
+                this.code = ThreadLocalRandom.current().nextInt(Constants.MIN, Constants.MAX + 1);
                 ps.setDate(1, this.data);
                 ps.setTime(2, ora_inizio);
                 ps.setTime(3, ora_fine);
@@ -136,7 +137,7 @@ public class Reservation {
                 ps.setLong(5, id_user);
                 ps.setBoolean(6, aperta);
                 ps.setInt(7, num_partecipanti);
-                ps.setLong(8, ThreadLocalRandom.current().nextInt(Constants.MIN, Constants.MAX + 1));
+                ps.setLong(8, this.code);
             db.modify(ps);
             }
         } catch (SQLException e) {
@@ -223,5 +224,15 @@ public class Reservation {
     public void setId_user(long id_user) {
         this.id_user = id_user;
     }
+
+    public long getCode() {
+        return code;
+    }
+
+    public void setCode(long code) {
+        this.code = code;
+    }
+    
+    
 
 }

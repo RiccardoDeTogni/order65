@@ -68,19 +68,27 @@
 
                 <div id="main-content" class="twelve columns">
 
-                    <h1> Le mie prenotazioni </h1>
+                    <h1> Struttura: </h1>
                     
+                    
+                    <ul class="nav nav-pills nav-stacked pull-left">
+  
+
                     <% for(int i=0; i<10;i++) {%>
                     
-                    <div id="field<%=i%>"> Dettagli prenotazione <button id="delete">X</button>
+                        <li><a href="#">Home</a></li>
+                        
+                    <%}%>
 
-
-                           <%}%>
-
-              
+                    </ul>
 
                    
-
+                    asfawfa
+                    afwawfaw
+                    wafw
+                    fawef
+                    <br>
+                    afafef
 
                         
                     </div>

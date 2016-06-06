@@ -71,10 +71,12 @@
 
         <!-- CSS
         ================================================== -->
-        <link rel="stylesheet" href="css/search.css">   
+        <link rel="stylesheet" href="bootstrap-3.3.6-dist/css/bootstrap.min.css">
+           
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">  
+         <link rel="stylesheet" href="css/search.css">
         
         <!-- Modernizr
         =================================================== -->
@@ -170,50 +172,48 @@
 
                     <!-- Search Form -->
                     <div class="search">
-                        <nav>
-                            <ul class="tabs">
-                                <li><a data-content="where" class="selected" href="#0">Dove?</a></li>
-                                <li><a data-content="when" href="#0">Quando?</a></li>
-                            </ul>
-                        </nav>
+                        
+                                  <ul class="nav nav-pills nav-justified">
+                                      <li class="active"><a data-toggle="pill" href="#dove">Dove?</a></li>
+                                      <li> <a data-toggle="pill" href="#quando">Quando?</a></li>
+                                  </ul>
+                        
 
-                        <ul class="contents">
-                            <li data-content="where" class="selected"> 
+                        
+                                  <div class="tab-content">
+                            
+                                             <div id="dove" class="tab-pane fade in active"> 
 
-                                <h2>Dove?</h2>
+                                                     <h2>Dove?</h2>
 
-                                <form id="placesearchform" action="Wherepage.jsp" class="group">
-                                    <!-- <select name="Struttura">
-                                     
-                                     </select> -->
-                                    <input type="name" id="tags" name="nome">
-                                    <input type="submit" value="Cerca" name="search" class="button">
+                                                             <form id="placesearchform" action="Wherepage.jsp" class="group">
+                                  
+                                                                     <input type="name" id="tags" name="nome">
+                                                                     <input type="submit" value="Cerca" name="search" class="button">
+                                                             </form>
+                                             </div>
+                                      
+                                      
+                            
+                                             <div id="quando" class="tab-pane fade">
 
-
-
-                                </form>
-                            </li>
-                            <li data-content="when">
-
-                                <h2>Quando?</h2>
-
-
-                                <form id="placesearchform" action="Whenpage.jsp" class="group">
-
-                                    <input type="date" value="" name="data_temp" class="date" id="search-DATE" placeholder="Data" required>
-                                    <input type="startime" value="" name="ora_inizio_temp" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>
-                                    <input type="endtime" value="" name="ora_fine_temp" class="endtime" id="search-ENDTIME" placeholder="Ora fine" required>
-
-                                    <input type="submit" value="Cerca" name="search" class="button">
+                                                      <h2>Quando?</h2>
 
 
+                                                             <form id="placesearchform" action="Whenpage.jsp" class="group">
 
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
+                                                                     <input type="date" value="" name="data_temp" class="date" id="search-DATE" placeholder="Data" required>
+                                                                     <input type="startime" value="" name="ora_inizio_temp" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>
+                                                                     <input type="endtime" value="" name="ora_fine_temp" class="endtime" id="search-ENDTIME" placeholder="Ora fine" required>
 
-                </div>
+                                                                     <input type="submit" value="Cerca" name="search" class="button">
+
+                                                             </form>
+                                             </div>
+                                 </div>
+                     </div>
+
+                 </div>
             </main>	      
 
         </div><!-- /content-wrap --> 
@@ -232,6 +232,7 @@
         <script src="js/jquery.placeholder.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
+        <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>    
 
     </body>

@@ -75,7 +75,7 @@ public class Reservation {
             Logs.printLog(LogTypes.WARNING, sqle.toString());
         }
         try {
-            this.code = rs.getLong("code");
+            this.code = rs.getLong("codice");
         } catch (SQLException sqle) {
             Logs.printLog(LogTypes.WARNING, sqle.toString());
         }

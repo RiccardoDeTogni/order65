@@ -4,6 +4,7 @@
     Author     : Giovanni
 --%>
 
+<%@page import="blogics.User"%>
 <%@page import="services.log.LogTypes"%>
 <%@page import="services.log.Logs"%>
 <%@page import="blogics.Campo"%>
@@ -23,8 +24,8 @@
 <jsp:useBean id="logonManagement" scope="page" class="bflows.LogonManagement" />
 <jsp:setProperty name="logonManagement" property="*" />
 
-<jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
-<jsp:setProperty name="reservationManagement" property="*" />
+<jsp:useBean id="userManagement" scope="page" class="bflows.UserManagement" />
+<jsp:setProperty name="userManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -50,26 +51,30 @@
                 response.sendRedirect("homepage.jsp");
             }
         }
+        userManagement.setInfo(info);
 
         if (status == null) {
             status = "view";
         }
+        if (status.equals("update")) {
+            userManagement.modify();
+        }
 
-        reservationManagement.setCitta(info.getCity());
+
     %>
-    
-    
+
+
     <script>
         function checkPasswordMatch() {
-        var password = $("#register-PASSWORD").val();
-        var confirmPassword = $("#register-CONFIRMPASSWORD").val();
+            var password = $("#register-PASSWORD").val();
+            var confirmPassword = $("#register-CONFIRMPASSWORD").val();
 
-        if (password !== confirmPassword)
-            alert("Password do not match!");
-    }
+            if (password !== confirmPassword)
+                alert("Password do not match!");
+        }
     </script>
-    
-    
+
+
     <head>
 
         <!--- Basic Page Needs
@@ -126,37 +131,45 @@
                     <h1> Il mio profilo </h1>
 
                     <div id="Info">
-                    
-                        <h3>Username: </h3> 
-                    <input type="name" value="" name="first_name" class="name" id="register-NAME" disabled>
-                    <input type="surname" value="" name="surname" class="surname" id="register-SURNAME" disabled>
-                    <input type="city" value="" name="city" class="city" id="register-CITY" disabled>
-                    <input type="date" value="" name="data" class="date" id="register-DATE" disabled>
-                    <input type="phonenumber" value="" name="telephone" class="phone" id="register-PHONENUMBER" disabled>
-                    <input type="email" value="" name="email" class="email" id="register-EMAIL" disabled>              
-                    <input type="submit" value="Modifica" name="modifica" class="button" style="display:none">
+                        <% if (status.equals("update")) { %>
+                        <h2>I dati sono stati modificati correttamente!</h2>
+                        <% }%>
+                        <h3>Username: <%=info.getUsername()%> </h3>
+                        <%  userManagement.setUsername(info.getUsername());
+                            User u = userManagement.getUser();%>
+                        <form action="Profilo.jsp" method="POST">
+                            <input type="name" value="<%=u.getFirst_name()%>" name="first_name" class="name" id="register-NAME">
+                            <input type="surname" value="<%=u.getSurname()%>" name="surname" class="surname" id="register-SURNAME">
+                            <input type="city" value="<%=u.getCity()%>" name="city" class="city" id="register-CITY">
+                            <input type="date" value="<%=u.getBirthdate()%>" name="data_temp" class="date" id="register-DATE">
+                            <input type="telephone" value="<%=u.getTelephone()%>" name="telephone" class="phone" id="register-PHONENUMBER">
+                            <input type="email" value="<%=u.getEmail()%>" name="email" class="email" id="register-EMAIL" disabled>
+                            <input type="hidden" name="status" value="update">
+                            <input type="hidden" name="username" value="<%=info.getUsername()%>" >
+                            <input type="submit" value="Modifica" name="modifica" class="button">
+                        </form>
                         <div id="changepassword" style="display:none">
-                            <input type="password" value="" name="oldpassword" class="oldpassword" id="register-OLDPASSWORD" required> 
+                            <input type="password" value="" name="oldpassword" class="oldpassword" id="register-OLDPASSWORD"> 
                             <input type="password" value="" name="newpassword" class="newpassword" id="register-PASSWORD" placeholder=" Nuova Password" required>
                             <input type="password" value="" name="confirmnewpassword" class="confirmnewpassword" id="register-CONFIRMNEWPASSWORD" placeholder="Conferma Nuova Password" required onBlur="checkPasswordMatch();">
                             <input type="submit" value="Cambia Password" name="cambiapassword" class="button">
                         </div>
-                    
-                    </div>
-                    
-                    
-                        
-                        <div id="changeinfo"> Modifica dati </div>
-                        <div id="togglepasswordchange"> Cambia la password </div>
-                        
-                    
-
-
-
-
-
 
                     </div>
+
+
+
+
+                    <div id="togglepasswordchange"> Cambia la password </div>
+
+
+
+
+
+
+
+
+                </div>
             </main>	      
 
         </div><!-- /content-wrap --> 

@@ -109,7 +109,7 @@
 
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
       
-        <script>
+      <!--  <script>
             $.getJSON('https://geoip-db.com/json/geoip.php?jsonp=?') 
                .done (function(location)
                {
@@ -121,7 +121,7 @@
                   $('#ip').html(location.IPv4);               
                });
           </script>
-        
+        -->
     </head>
 
     <body>
@@ -163,7 +163,7 @@
                   
 
 
-                    <div>Non sei a <text id="state"></text>?</div>
+                    <!--<div>Non sei a <text id="state"></text>?</div> -->
                             
 
 

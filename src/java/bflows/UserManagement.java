@@ -49,7 +49,18 @@ public class UserManagement {
     private boolean active;
     private long struttura;
     private Date birthdate;
+    private String data_temp;
 
+    public String getData_temp() {
+        return data_temp;
+    }
+
+    public void setData_temp(String data_temp) {
+        this.data_temp = data_temp;
+    }
+
+    
+    
     public Date getBirthdate() {
         return birthdate;
     }
@@ -354,32 +365,38 @@ public class UserManagement {
         try {
             db = DBService.getDatabase();
             User usr = UserService.getUser(db, this.username);
-
+            
             if (this.info.isLoggedon()) {
 
-                if (!this.tmp_name.equals(this.username)) {
-                    usr.setUsername(this.tmp_name);
-                }
-
-                if (!this.email.equals("")) {
-
+                /*if (!this.email.equals("")) {
+                    Logs.printLog(LogTypes.INFO, "email" + this.email);
                     usr.setEmail(this.email);
-                }
+                } */
                 if (!this.first_name.equals("")) {
-
+                    
                     usr.setFirst_name(this.first_name);
                 }
-                if (this.passwd != null || !this.passwd.equals("")) {
-
-                    usr.setPasswd(this.passwd);
-                }
                 if (!this.surname.equals("")) {
-
+                    
                     usr.setSurname(this.surname);
                 }
-
+                if (!this.city.equals("")) {
+                    
+                    usr.setCity(this.city);
+                }
+                if (!this.telephone.equals("")) {
+                    
+                    usr.setTelephone(this.telephone);
+                }
+                
+                DateFormat formatter;
+                formatter = new SimpleDateFormat("yyyy-MM-dd");
+                
+                usr.setBirthdate(new java.sql.Date(formatter.parse(this.data_temp).getTime()));
                 usr.setType(usr.getType());
+                
                 usr.update(db);
+                Logs.printLog(LogTypes.INFO, "modify");
 
             }
             db.commit();

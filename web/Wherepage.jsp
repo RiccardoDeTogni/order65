@@ -3,17 +3,49 @@
     Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
+<%@page import="global.Constants"%>
+<%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page info="Where Page" %>
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
 
+<jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
+<jsp:setProperty name="reservationManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 
+    <%
+        Cookie[] cookies = request.getCookies();
+        Cookie cookie = null;
+        boolean loggedOn = false;
+        SessionInfo info = null;
+        String status = request.getParameter("status");
+
+        if (cookies != null) {
+            cookie = null;
+            for (Cookie c : cookies) {
+                if (Constants.COOKIE_NAME.equals(c.getName())) {
+                    cookie = c;
+                }
+            }
+            if (cookie != null) {
+                info = new SessionInfo(cookie);
+                loggedOn = info.isLoggedon();
+            } else {
+                response.sendRedirect("homepage.jsp");
+            }
+        }
+
+        if (status == null) {
+            status = "view";
+        }
+
+        reservationManagement.setCitta(info.getCity());
+    %>
     <head>
 
         <!--- Basic Page Needs
@@ -83,22 +115,24 @@
                     <div id="calendar">
                         <ul id="datebar">
                             <li>frecciasinistra</li>
-                            <%for(int i=0; i<3; i++){%>
+                                <% reservationManagement.getReservationsFromCampo();
+                                   
+                                    {%>
                             <li id="datequalcosa">Data<%=i%></br>x posti disponibili </li>
-                            <%}%>
+                                <%}%>
                             <li>frecciadestra</li>
                         </ul>
-                            <hr>
-                    <div id="slots">
-                        
-                            <%for(int i=7;i<24;i++){%>
-                            <div id="slot">Slot <%=i%>.00-<%=(i+1)%>.00</div>
-                                
+                        <hr>
+                        <div id="slots">
+
+                            <%for (int i = 7; i < 24; i++) {%>
+                            <div id="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div>
+
                             <%}%> 
-                    </div>
+                        </div>
 
 
-                        
+
                     </div>
 
                 </div>

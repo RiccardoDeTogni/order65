@@ -19,6 +19,7 @@ import java.util.Calendar;
 import java.util.List;
 import services.database.DBService;
 import services.database.Database;
+import services.database.exceptions.DuplicatedRecordDBException;
 import services.database.exceptions.NotFoundDBException;
 import services.database.exceptions.ResultSetDBException;
 import services.log.LogTypes;
@@ -185,7 +186,12 @@ public class ReservationManagement {
                 db.rollback();
             }
             Logs.printLog(LogTypes.ERROR, "SQL Error");
-        } catch (Exception ex) {
+        } catch (DuplicatedRecordDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Duplicate Error");
+        }catch (Exception ex) {
             if (db != null) {
                 db.rollback();
             }

@@ -91,7 +91,7 @@ public class Reservation {
         }
     }
 
-    public void insertReservation(Database db) throws SQLException, NotFoundDBException, ResultSetDBException {
+    public void insertReservation(Database db) throws SQLException, NotFoundDBException, ResultSetDBException, DuplicatedRecordDBException {
         ResultSet rs = null;
         String sql = "SELECT * from prenotazione where data = ? AND ? < ora_inizio < ? AND id_campo = ?";
         PreparedStatement ps = db.getConnection().prepareStatement(sql);

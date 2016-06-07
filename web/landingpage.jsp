@@ -57,8 +57,8 @@
         }
 
         reservationManagement.setCitta(info.getCity());
-        
-        if (status.equals("insertReservation")){
+
+        if (status.equals("insertReservation")) {
             res = reservationManagement.insertReservation();
         }
     %>
@@ -117,20 +117,24 @@
 
                     <h1> Prenotazione effettuata correttamente! </h1>
 
-                    
+
                     <div id="prenotazione" > Dettagli prenotazione:<br/>
-                        <% 
-                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
-                            Struttura: <%=c.getNome_struttura()%><br/>
-                            Campo: <%=c.getNome()%><br/>
-                            Data: <%=res.getData()%>
-                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
-                            Codice Prenotazione: <%=res.getCode()%> 
+                        <%  if (res != null) {
+                                Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
+                        Struttura: <%=c.getNome_struttura()%><br/>
+                        Campo: <%=c.getNome()%><br/>
+                        Data: <%=res.getData()%>
+                        Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
+                        Codice Prenotazione: <%=res.getCode()%> 
                     </div>
-                            <a href="#">Stampa la prenotazione</a>
-                            <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
-                            <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
-                    
+                    <a href="#">Stampa la prenotazione</a>
+                    <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
+
+                    <%  } else { %>
+                    Si è verificato un errore...
+
+                    <%}%>
+                    <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
 
 
 
@@ -139,8 +143,7 @@
 
 
 
-
-                    </div>
+                </div>
             </main>	      
 
         </div><!-- /content-wrap --> 

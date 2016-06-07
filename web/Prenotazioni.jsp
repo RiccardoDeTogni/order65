@@ -124,9 +124,9 @@
                             Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
                             Struttura: <%=c.getNome_struttura()%><br/>
                             Campo: <%=c.getNome()%><br/>
-                            Data: <%=res.getData()%>
-                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%>
-                            Codice Prenotazione: <%=res.getCode()%>
+                            Data: <%=res.getData()%><br/>
+                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
+                            Codice Prenotazione: <%=res.getCode()%><br/>
                             <button id="delete">X</button><!-- Gingillo qui devi metterci il banner di conferma -->
                     </div>
                     <%}%>

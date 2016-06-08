@@ -185,7 +185,7 @@
                                                      <h2>Dove?</h2>
 
                                                              <form id="placesearchform" action="Wherepage.jsp" class="group">
-                                  
+                                                                     <input type="hidden" name="id_campo" value="" id="search-field">
                                                                      <input type="name" id="tags" name="nome">
                                                                      <input type="submit" value="Cerca" name="search" class="button">
                                                              </form>
@@ -199,7 +199,6 @@
 
 
                                                              <form id="placesearchform" action="Whenpage.jsp" class="group">
-
                                                                      <input type="date" value="" name="data_temp" class="date" id="search-DATE" placeholder="Data" required>
                                                                      <input type="startime" value="" name="ora_inizio_temp" class="startime" id="search-STARTIME" placeholder="Ora inizio" required>
                                                                      <input type="endtime" value="" name="ora_fine_temp" class="endtime" id="search-ENDTIME" placeholder="Ora fine" required>

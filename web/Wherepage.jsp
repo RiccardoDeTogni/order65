@@ -105,7 +105,22 @@
 
                     <hr>
 
+                    <ul class="nav nav-pills nav-stacked pull-left">
 
+
+                        <% reservationManagement.
+                            for (int i = 0; i < 10; i++) {%>
+
+                        <li>
+                            <form id="changefield" action="Wherepage.jsp" method="post">
+                                <input type="hidden" name="id_campo" value="<%=i%>" id="search-field">
+                                <input type="hidden" id="tags" name="nome" value="<%=reservationManagement.getNomeCampo_StrutturaFromId().getNome_struttura()%>">
+                                <input type="submit" value="Campo <%=i%>"
+                            </form>
+                        </li>
+                        <%}%>
+
+                    </ul>
 
 
 
@@ -116,9 +131,9 @@
                         <ul id="datebar">
                             <li>frecciasinistra</li>
                                 <% reservationManagement.getReservationsFromCampo();
-                                   
+
                                     {%>
-                            <li id="datequalcosa">Data<%=i%></br>x posti disponibili </li>
+                            <li id="datequalcosa">Data<%%></br>x posti disponibili </li>
                                 <%}%>
                             <li>frecciadestra</li>
                         </ul>

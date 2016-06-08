@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import services.database.DBService;
@@ -44,6 +45,7 @@ public class ReservationManagement {
     private String data_temp;
     private String ora_inizio_temp;
     private String ora_fine_temp;
+    private String nome_struttura;
 
     public List<Reservation> getReservationsFromCampo() {
         Database db = null;
@@ -119,6 +121,43 @@ public class ReservationManagement {
             }
         }
         return c;
+    }
+    
+    public List<Campo> getCampoListFromStruttura() {
+        Database db = null;
+        List<Campo> cl = new ArrayList();
+        try {
+
+            db = DBService.getDatabase();
+            cl = CampoService.getCampoListFromStruttura(db, StrutturaService.getStrutturaIDFromNome(db, this.nome_struttura));
+            db.commit();
+
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getNomeCampo&Struttura(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+        return cl;
     }
     
     public List<Reservation> getReservationsFromUser() {
@@ -433,5 +472,15 @@ public class ReservationManagement {
     public void setCitta(String citta) {
         this.citta = citta;
     }
+
+    public String getNome_struttura() {
+        return nome_struttura;
+    }
+
+    public void setNome_struttura(String nome_struttura) {
+        this.nome_struttura = nome_struttura;
+    }
+    
+    
 
 }

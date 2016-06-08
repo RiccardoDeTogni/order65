@@ -63,6 +63,31 @@ public class StrutturaService {
         }
         return struttura;
 
-    } 
+    }
+    
+    public static long getStrutturaIDFromNome(Database db, String nome) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        long ret = 0;
+
+        String sql = " SELECT id "
+                + "   FROM struttura "
+                + " WHERE name = ?";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setString(1, nome);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                ret = resultSet.getLong("id");
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("StrutturaService: getStrutturaFromCampoId():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return ret;
+
+    }
     
 }

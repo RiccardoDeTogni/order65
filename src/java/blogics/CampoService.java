@@ -35,7 +35,7 @@ public class CampoService {
             resultSet.close();
             return cl;
         } catch (SQLException ex) {
-            throw new ResultSetDBException("UserService: getUserList():  ResultSetDBException: " + ex.getMessage(), db);
+            throw new ResultSetDBException("UserService: getCampoListFromStruttura():  ResultSetDBException: " + ex.getMessage(), db);
         }
     }
     

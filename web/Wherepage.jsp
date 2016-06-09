@@ -3,6 +3,8 @@
     Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
+<%@page import="blogics.Campo"%>
+<%@page import="java.util.List"%>
 <%@page import="global.Constants"%>
 <%@page import="services.session.SessionInfo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -108,25 +110,28 @@
                     <ul class="nav nav-pills nav-stacked pull-left">
 
 
-                        <% reservationManagement.
-                            for (int i = 0; i < 10; i++) {%>
+                        <% List<Campo> cl = reservationManagement.getCampoListFromStruttura();
+
+                            for (Campo c : cl) {%>
 
                         <li>
                             <form id="changefield" action="Wherepage.jsp" method="post">
-                                <input type="hidden" name="id_campo" value="<%=i%>" id="search-field">
+                                <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
                                 <input type="hidden" id="tags" name="nome" value="<%=reservationManagement.getNomeCampo_StrutturaFromId().getNome_struttura()%>">
-                                <input type="submit" value="Campo <%=i%>"
+                                <buttom type="submit" form="changefield" value="Campo <%=c.getNome()%>" onclick="">Campo <%=c.getNome()%></button>
                             </form>
                         </li>
                         <%}%>
 
                     </ul>
 
-
+                    <%if (reservationManagement.getId_campo()==0) {
+                            reservationManagement.setId_campo(cl.get(1).getId());
+                        }%>
 
                     <!-- Available places -->
 
-                    <h2> Calendario per nome struttura: </h2>
+                    <h2> Calendario per <%=reservationManagement.getNomeCampo_StrutturaFromId().getNome_struttura()%> </h2>
                     <div id="calendar">
                         <ul id="datebar">
                             <li>frecciasinistra</li>

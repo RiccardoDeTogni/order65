@@ -131,7 +131,8 @@
                             <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
                                 <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
                                 <input type="hidden" id="tags" name="nome_struttura" value="<%=reservationManagement.getNome_struttura()%>">
-                                <button class="btn btn-link" role="link" type="submit" form="changefield<%=c.getNome()%>" name="change" value="<%=c.getNome()%>">
+                                <input type="hidden" value="<%=reservationManagement.getData_temp()%>" name="data_temp" class="date" id="search-DATE">
+                                <button class="btn btn-toolbar" role="link" type="submit" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>">
                             </form>
                         </li>
                         <%}%>
@@ -158,13 +159,13 @@
                             <% List<Reservation> rl = reservationManagement.getReservationsFromCampo();%>
                             <div id="slots">
 
-                                <%if (rl != null) {
+                                <%if (!rl.isEmpty()) {
                                         
                                         for (int i = 7; i < 24; i++) {
                                             for (Reservation r : rl) {
                                                 
                                             String tmp = (i<10 ? "0" : "") + i + ":00:00";
-                                            Logs.printLog(LogTypes.DBINFO, "ciao " + tmp);
+                                            
                                             if ((r.getOra_inizio().toString().equals(tmp))) {%>
                                 <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
                                 <%  } else {%>
@@ -173,6 +174,7 @@
                                         }
                                     }
                                 } else {
+                                    
                                        for (int i = 7; i < 24; i++) {%>
                                        <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
                                 <%

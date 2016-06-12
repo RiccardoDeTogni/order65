@@ -3,6 +3,8 @@
     Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
+<%@page import="services.log.LogTypes"%>
+<%@page import="services.log.Logs"%>
 <%@page import="blogics.Reservation"%>
 <%@page import="blogics.Campo"%>
 <%@page import="java.util.List"%>
@@ -157,9 +159,12 @@
                             <div id="slots">
 
                                 <%if (rl != null) {
+                                        
                                         for (int i = 7; i < 24; i++) {
                                             for (Reservation r : rl) {
-                                            String tmp = "" + i + ":00:00";
+                                                
+                                            String tmp = (i<10 ? "0" : "") + i + ":00:00";
+                                            Logs.printLog(LogTypes.DBINFO, "ciao " + tmp);
                                             if ((r.getOra_inizio().toString().equals(tmp))) {%>
                                 <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
                                 <%  } else {%>

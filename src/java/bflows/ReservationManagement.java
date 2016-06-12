@@ -53,6 +53,9 @@ public class ReservationManagement {
         try {
 
             db = DBService.getDatabase();
+            DateFormat formatter;
+            formatter = new SimpleDateFormat("yyyy-MM-dd");
+            this.data = new java.sql.Date(formatter.parse(this.data_temp).getTime());
             resList = ReservationService.getCurrentReservationFromCampo(db, this.id_campo, this.data);
 
             db.commit();

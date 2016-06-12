@@ -4,6 +4,9 @@
     Author     : Giovanni
 --%>
 
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="services.log.LogTypes"%>
 <%@page import="services.log.Logs"%>
@@ -185,7 +188,9 @@
                                                      <h2>Dove?</h2>
                                                      
                                                      <% String data_temp = "";
-                                                        Calendar today = Calendar.getInstance();
+                                                        
+                                                        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                                                        data_temp = formatter.format(Calendar.getInstance().getTime());
                                                      %>
 
                                                              <form id="placesearchform" action="Wherepage.jsp" class="group">

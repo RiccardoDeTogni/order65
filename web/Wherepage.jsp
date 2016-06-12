@@ -161,6 +161,7 @@
                                             for (Reservation r : rl) {
                                             String tmp = "" + i + ":00:00";
                                             if ((r.getOra_inizio().toString().equals(tmp))) {%>
+                                            
                                 <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
                                 <%  } else {%>
                                 <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
@@ -169,6 +170,7 @@
                                     }
                                 } else {
                                        for (int i = 7; i < 24; i++) {%>
+                                       
                                        <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
                                 <%
                                         }

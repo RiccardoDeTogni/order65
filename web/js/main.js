@@ -100,7 +100,27 @@
    });
    
    
-   
+    $('.slot').click(function(){
+
+
+		$.confirm({
+			'title'		: 'Conferma prenotazione',
+			'message'	: 'Desideri confermare la prenotazione relativa a questo campo?',
+			'buttons'	: {
+				'Conferma'	: {
+					'class'	: 'blue',
+					'action': function(){
+                                            $('#insertReservation').submit();
+					}
+				},
+				'Annulla'	: {
+					'class'	: 'gray',
+					'action': function(){}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			}
+		});
+
+	});
    
     $('.field').click(function(){
 

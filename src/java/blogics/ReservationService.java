@@ -44,6 +44,7 @@ public class ReservationService {
                 + "  data = ?";
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ps.setLong(1, c);
+        ps.setDate(2, d);
         rs = db.select(ps);
         while (rs.next()) {
             resList.add(new Reservation(rs));

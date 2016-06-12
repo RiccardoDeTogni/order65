@@ -143,7 +143,7 @@
                     <!-- Available places -->
 
                     <h2> Calendario per <%=reservationManagement.getNome_struttura()%> </h2>
-                    <h2><%=reservationManagement.getNomeCampo_StrutturaFromId().getNome()%>
+                    <h2><%=reservationManagement.getNomeCampo_StrutturaFromId().getNome()%></h2>
                     <div id="calendar" class="six-columns">
                         <ul id="datebar">
                             <li>frecciasinistra</li>
@@ -159,8 +159,8 @@
                                 <%if (rl != null) {
                                         for (int i = 7; i < 24; i++) {
                                             for (Reservation r : rl) {
-                                            String tmp = "" + i + ".00";
-                                            if ((r.getOra_inizio().equals(tmp))) {%>
+                                            String tmp = "" + i + ":00:00";
+                                            if ((r.getOra_inizio().toString().equals(tmp))) {%>
                                 <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
                                 <%  } else {%>
                                 <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>

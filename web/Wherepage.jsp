@@ -29,7 +29,7 @@
         String status = request.getParameter("status");
 
         if (cookies != null) {
-            cookie = null;
+            
             for (Cookie c : cookies) {
                 if (Constants.COOKIE_NAME.equals(c.getName())) {
                     cookie = c;
@@ -137,7 +137,6 @@
                     <div id="calendar" class="six-columns">
                         <ul id="datebar">
                             <li>frecciasinistra</li>
-                              
                             <li id="datebefore">Data<%%></br>x posti disponibili </li>
                             <li id="dateselected">Data<%=reservationManagement.getData_temp()%></br>x posti disponibili </li>
                                 <li id="dateafter">Data<%%></br>x posti disponibili </li>

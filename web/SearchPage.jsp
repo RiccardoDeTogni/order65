@@ -183,10 +183,14 @@
                                              <div id="dove" class="tab-pane fade in active"> 
 
                                                      <h2>Dove?</h2>
+                                                     
+                                                     <% String data_temp = "";
+                                                        Calendar today = Calendar.getInstance();
+                                                     %>
 
                                                              <form id="placesearchform" action="Wherepage.jsp" class="group">
                                                                      <input type="hidden" name="id_campo" value="0" id="search-field">
-                                                                     <input type="hidden" value="dataoggi" name="data_temp" class="date" id="search-DATE">
+                                                                     <input type="hidden" value="<%=data_temp%>" name="data_temp" class="date" id="search-DATE">
                                                                      <input type="name" id="tags" name="nome_struttura">
                                                                      <input type="submit" value="Cerca" name="search" class="button">
                                                              </form>

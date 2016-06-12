@@ -3,6 +3,7 @@
     Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
+<%@page import="blogics.Reservation"%>
 <%@page import="blogics.Campo"%>
 <%@page import="java.util.List"%>
 <%@page import="global.Constants"%>
@@ -113,12 +114,12 @@
                         <% List<Campo> cl = reservationManagement.getCampoListFromStruttura();
 
                             for (Campo c : cl) {%>
-
+                            
                         <li>
-                            <form id="changefield" action="Wherepage.jsp" method="post">
+                            <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
                                 <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
-                                <input type="hidden" id="tags" name="nome" value="<%=reservationManagement.getNomeCampo_StrutturaFromId().getNome_struttura()%>">
-                                <buttom type="submit" form="changefield" value="Campo <%=c.getNome()%>" onclick="">Campo <%=c.getNome()%></button>
+                                <input type="hidden" id="tags" name="nome_struttura" value="<%=reservationManagement.getNome_struttura()%>">
+                                <button class="btn btn-link" role="link" type="submit" form="changefield<%=c.getNome()%>" name="change" value="<%=c.getNome()%>">
                             </form>
                         </li>
                         <%}%>
@@ -126,32 +127,44 @@
                     </ul>
 
                     <%if (reservationManagement.getId_campo()==0) {
-                            reservationManagement.setId_campo(cl.get(1).getId());
+                            reservationManagement.setId_campo(cl.get(0).getId());
                         }%>
 
                     <!-- Available places -->
 
-                    <h2> Calendario per <%=reservationManagement.getNomeCampo_StrutturaFromId().getNome_struttura()%> </h2>
-                    <div id="calendar">
+                    <h2> Calendario per <%=reservationManagement.getNome_struttura()%> </h2>
+                    <h2><%=reservationManagement.getNomeCampo_StrutturaFromId().getNome()%>
+                    <div id="calendar" class="six-columns">
                         <ul id="datebar">
                             <li>frecciasinistra</li>
-                                <% reservationManagement.getReservationsFromCampo();
-
-                                    {%>
-                            <li id="datequalcosa">Data<%%></br>x posti disponibili </li>
-                                <%}%>
+                              
+                            <li id="datebefore">Data<%%></br>x posti disponibili </li>
+                            <li id="dateselected">Data<%=reservationManagement.getData_temp()%></br>x posti disponibili </li>
+                                <li id="dateafter">Data<%%></br>x posti disponibili </li>
                             <li>frecciadestra</li>
                         </ul>
                         <hr>
+                          <% List<Reservation> rl = reservationManagement.getReservationsFromCampo();
+                                    for(Reservation r : rl){
+                                        
+                                    }
+                                    %>
                         <div id="slots">
 
                             <%for (int i = 7; i < 24; i++) {%>
-                            <div id="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div>
+                            <div id="slot<%=i%>">Slot <%=i%>.00-<%=(i + 1)%>.00</div>
 
                             <%}%> 
                         </div>
 
-
+                        <form id="insertReservation" action="landingpage.jsp" method="get" >
+                            <input type="hidden" id="start" name="ora_inizio_temp" value="">
+                            <input type="hidden" id="end" name="ora_fine_temp" value="">
+                            <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">
+                            <input type="hidden" id="campo" name="id_campo" value="">
+                            <input type="hidden" name="status" value="insertReservation">
+                            <input type="hidden" name="id_user" value="<%=info.getId()%>">
+                        </form>
 
                     </div>
 

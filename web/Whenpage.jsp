@@ -102,6 +102,8 @@
 
             <!-- main  -->
             <main class="row">
+                
+                <%@ include file="dropdown.jsp"%>
 
                 <header class="site-header">
                     <div class="logo">

@@ -31,7 +31,7 @@
         String status = request.getParameter("status");
 
         if (cookies != null) {
-            
+
             for (Cookie c : cookies) {
                 if (Constants.COOKIE_NAME.equals(c.getName())) {
                     cookie = c;
@@ -87,10 +87,10 @@
 
         <script>
             function reserv(orario) {
-                
+
                 var inizio = document.getElementById("ora_inizio_temp");
                 inizio.value = "" + orario + ".00";
-                
+
                 var fine = document.getElementById("ora_fine_temp");
                 fine.value = "" + (orario + 1) + ".00";
             }
@@ -146,54 +146,64 @@
                         }%>
 
                     <!-- Available places -->
+                    <% List<Reservation> rl = reservationManagement.getReservationsFromCampo();
+                        int postiliberi = 17 - rl.size();%>
 
                     <h2> Calendario per <%=reservationManagement.getNome_struttura()%> </h2>
                     <h2><%=reservationManagement.getNomeCampo_StrutturaFromId().getNome()%></h2>
                     <div id="calendar" class="six-columns">
                         <ul id="datebar">
                             <li>frecciasinistra</li>
-                            <li id="datebefore">Data<%%></br>x posti disponibili </li>
-                            <li id="dateselected">Data<%=reservationManagement.getData_temp()%></br>x posti disponibili </li>
-                                <li id="dateafter">Data<%%></br>x posti disponibili </li>
-                                <li>frecciadestra</li>
-                            </ul>
-                            <hr>
-                            <% List<Reservation> rl = reservationManagement.getReservationsFromCampo();%>
-                            <div id="slots">
+                            <li id="datebefore">Data<%%></br></li>
+                            <li id="dateselected"><%=reservationManagement.getData_temp()%></br><%=postiliberi%> posti disponibili </li>
+                            <li id="dateafter">Data<%%></br></li>
+                            <li>frecciadestra</li>
+                        </ul>
+                        <hr>
 
-                                <%if (!rl.isEmpty()) {
-                                        
-                                        for (int i = 7; i < 24; i++) {
-                                            for (Reservation r : rl) {
-                                                
-                                            String tmp = (i<10 ? "0" : "") + i + ":00:00";
-                                            
-                                            if ((r.getOra_inizio().toString().equals(tmp))) {%>
-                                <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
-                                <%  } else {%>
-                                <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
-                                <%}
+                        <div id="slots">
+
+                            <%
+                                if (!rl.isEmpty()) {
+
+                                    for (int i = 7; i < 24; i++) {
+                                        Boolean bool = false;
+                                        for (Reservation r : rl) {
+
+                                            String tmp = (i < 10 ? "0" : "") + i + ":00:00";
+
+                                            if ((r.getOra_inizio().toString().equals(tmp))) {
+                                                bool = true;
+                                            }
                                         }
+                                        if (bool) {
+                            %>
+
+                            <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
+                            <%  } else {%>
+                            <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
+                            <%}
+                                }
+                            } else {
+
+                                for (int i = 7; i < 24; i++) {%>
+
+                            <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
+                            <%
                                     }
-                                } else {
-                                    
-                                       for (int i = 7; i < 24; i++) {%>
-                                       <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
-                                <%
-                                        }
-                                    }%> 
-                            </div>
-
-                            <form id="insertReservation" action="landingpage.jsp" method="get" >
-                                <input type="hidden" name="ora_inizio_temp" id="ora_inizio_temp" value="">
-                                <input type="hidden" name="ora_fine_temp" id="ora_fine_temp" value="">
-                                <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">
-                                <input type="hidden" id="campo" name="id_campo" value="<%=reservationManagement.getId_campo()%>">
-                                <input type="hidden" name="status" value="insertReservation">
-                                <input type="hidden" name="id_user" value="<%=info.getId()%>">
-                            </form>
-
+                                }%> 
                         </div>
+
+                        <form id="insertReservation" action="landingpage.jsp" method="get" >
+                            <input type="hidden" name="ora_inizio_temp" id="ora_inizio_temp" value="">
+                            <input type="hidden" name="ora_fine_temp" id="ora_fine_temp" value="">
+                            <input type="hidden" id="date" name="data_temp" value="<%=reservationManagement.getData_temp()%>">
+                            <input type="hidden" id="campo" name="id_campo" value="<%=reservationManagement.getId_campo()%>">
+                            <input type="hidden" name="status" value="insertReservation">
+                            <input type="hidden" name="id_user" value="<%=info.getId()%>">
+                        </form>
+
+                    </div>
 
                 </div>
             </main>	      

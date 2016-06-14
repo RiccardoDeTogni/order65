@@ -1,4 +1,5 @@
 <div class="dropdown">
+    <% if(loggedOn){%>
                     <button onclick="dropDown()" class="dropbtn"/>
                         <div id="dropmenu" class="dropdown-content">
                             <p><%=info.getUsername()%></P>
@@ -10,4 +11,5 @@
                          <%}%>
                         <a href="homepage.jsp?USERNAME=<%=info.getUsername()%>&status=logout">Logout</a>
                     </div>
+                    <%}%>
                 </div>

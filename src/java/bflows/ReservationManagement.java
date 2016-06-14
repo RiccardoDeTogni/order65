@@ -102,7 +102,7 @@ public class ReservationManagement {
             c.setNome_struttura(nome_struttura);
             
             db.commit();
-
+            
         } catch (NotFoundDBException ex) {
             if (db != null) {
                 db.rollback();

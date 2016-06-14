@@ -112,15 +112,15 @@
                         <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
-
+                
                 <div id="main-content" class="twelve columns">
-
+                    <%  if (res.getCode() != 0){%>
                     <h1> Prenotazione effettuata correttamente! </h1>
 
 
                     <div id="prenotazione" > Dettagli prenotazione:<br/>
-                        <%  if (res != null) {
-                                Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
+                        
+                              <%  Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
                         Struttura: <%=c.getNome_struttura()%><br/>
                         Campo: <%=c.getNome()%><br/>
                         Data: <%=res.getData()%>
@@ -131,7 +131,7 @@
                     <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
 
                     <%  } else { %>
-                    Si è verificato un errore...
+                    Si è verificato un errore...<br/>
 
                     <%}%>
                     <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>

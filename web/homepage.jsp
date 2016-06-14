@@ -56,6 +56,9 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
+            if(loggedOn){
+                response.sendRedirect("SearchPage.jsp");
+            }
             
         }
     }

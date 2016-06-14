@@ -121,13 +121,17 @@
 
                     <div id="field<%=i%>" > Dettagli prenotazione:
                         <% reservationManagement.setId_campo(res.getId_campo());
-                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
-                            Struttura: <%=c.getNome_struttura()%><br/>
-                            Campo: <%=c.getNome()%><br/>
-                            Data: <%=res.getData()%><br/>
-                            Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
-                            Codice Prenotazione: <%=res.getCode()%><br/>
-                            <button id="delete">X</button><!-- Gingillo qui devi metterci il banner di conferma -->
+
+                            
+                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();
+                        Logs.printLog(LogTypes.DBINFO, "ciao  " + c.getNome() + c.getNome_struttura());%>
+                         %>   
+                        Struttura: <%=c.getNome_struttura()%><br/>
+                        Campo: <%=c.getNome()%><br/>
+                        Data: <%=res.getData()%><br/>
+                        Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
+                        Codice Prenotazione: <%=res.getCode()%><br/>
+                        <button id="delete">X</button><!-- Gingillo qui devi metterci il banner di conferma -->
                     </div>
                     <%}%>
 
@@ -139,7 +143,7 @@
 
 
 
-                    </div>
+                </div>
             </main>	      
 
         </div><!-- /content-wrap --> 

@@ -93,12 +93,12 @@ public class Reservation {
 
     public void insertReservation(Database db) throws SQLException, NotFoundDBException, ResultSetDBException, DuplicatedRecordDBException {
         ResultSet rs = null;
-        String sql = "SELECT * from prenotazione where data = ? AND ? < ora_inizio < ? AND id_campo = ?";
+        String sql = "SELECT * from prenotazione where data = ? AND (ora_inizio BETWEEN ? AND ?) AND id_campo = ?";
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
         ps.setDate(1, this.data);
-        ps.setTime(2, ora_inizio);
-        ps.setTime(3, ora_fine);
-        ps.setLong(4, id_campo);
+        ps.setTime(2, this.ora_inizio);
+        ps.setTime(3, this.ora_fine);
+        ps.setLong(4, this.id_campo);
         rs = db.select(ps);
         try {
             boolean exist = rs.next();

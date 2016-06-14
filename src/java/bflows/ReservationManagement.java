@@ -91,11 +91,16 @@ public class ReservationManagement {
     public Campo getNomeCampo_StrutturaFromId() {
         Database db = null;
         Campo c = null;
+        
         try {
 
             db = DBService.getDatabase();
             c = CampoService.getCampo(db, this.id_campo);
-            c.setNome_struttura(StrutturaService.getStrutturaFromCampoId(db, c.getId()).getNome());
+            
+            String nome_struttura = StrutturaService.getStrutturaFromCampoId(db, c.getId_struttura()).getNome();
+            
+            c.setNome_struttura(nome_struttura);
+            
             db.commit();
 
         } catch (NotFoundDBException ex) {
@@ -149,7 +154,7 @@ public class ReservationManagement {
             if (db != null) {
                 db.rollback();
             }
-            Logs.printLog(LogTypes.ERROR, "ReservationManagement getNomeCampo&Struttura(): Generic Exception: " + ex.getMessage());
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getNomeCampoListFromStruttura(): Generic Exception: " + ex.getMessage());
 
         } finally {
             try {

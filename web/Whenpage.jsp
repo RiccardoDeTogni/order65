@@ -77,7 +77,9 @@
         <link rel="stylesheet" href="css/base.css">
         <link rel="stylesheet" href="css/vendor.css">
         <link rel="stylesheet" href="css/homepage.css">    
-        <link rel="stylesheet" href="css/when.css">   
+        <link rel="stylesheet" href="css/when.css">  
+         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
         <!-- Modernizr
         =================================================== -->

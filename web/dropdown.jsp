@@ -1,3 +1,11 @@
+<script type="text/javascript">
+                function dropDown() {
+                 document.getElementById("dropmenu").classList.toggle("show");
+                }
+        </script>
+
+
+
 <div class="dropdown">
     <% if(loggedOn){%>
                     <button onclick="dropDown()" class="dropbtn"/>

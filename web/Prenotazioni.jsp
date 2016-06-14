@@ -101,10 +101,10 @@
 
             <!-- main  -->
             <main class="row">
-
+                <%@ include file="dropdown.jsp"%>  
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 

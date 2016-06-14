@@ -122,9 +122,10 @@
                     <div id="field<%=i%>" > Dettagli prenotazione:
                         <% reservationManagement.setId_campo(res.getId_campo());
 
-                        //Logs.printLog(LogTypes.DBINFO, "ciao  " + res.getId_campo() + res.getCode() + res.getData());
-                        
-                        Campo c = reservationManagement.getNomeCampo_StrutturaFromId();%>
+                            
+                            Campo c = reservationManagement.getNomeCampo_StrutturaFromId();
+                        Logs.printLog(LogTypes.DBINFO, "ciao  " + c.getNome() + c.getNome_struttura());%>
+                         %>   
                         Struttura: <%=c.getNome_struttura()%><br/>
                         Campo: <%=c.getNome()%><br/>
                         Data: <%=res.getData()%><br/>

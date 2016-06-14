@@ -98,8 +98,9 @@ public class ReservationManagement {
             c = CampoService.getCampo(db, this.id_campo);
             
             String nome_struttura = StrutturaService.getStrutturaFromCampoId(db, c.getId_struttura()).getNome();
-            Logs.printLog(LogTypes.INFO, "get " + nome_struttura);
+            
             c.setNome_struttura(nome_struttura);
+            
             db.commit();
 
         } catch (NotFoundDBException ex) {

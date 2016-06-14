@@ -101,8 +101,6 @@
 
             <!-- main  -->
             <main class="row">
-                
-                <%@ include file="dropdown.jsp"%>
 
                 <header class="site-header">
                     <div class="logo">
@@ -124,10 +122,9 @@
                     <div id="field<%=i%>" > Dettagli prenotazione:
                         <% reservationManagement.setId_campo(res.getId_campo());
 
-                            
                             Campo c = reservationManagement.getNomeCampo_StrutturaFromId();
-                        Logs.printLog(LogTypes.DBINFO, "ciao  " + c.getNome() + c.getNome_struttura());%>
-                         %>   
+                            %>
+                           
                         Struttura: <%=c.getNome_struttura()%><br/>
                         Campo: <%=c.getNome()%><br/>
                         Data: <%=res.getData()%><br/>

@@ -62,7 +62,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href=".html">PlayToday.</a>
+                        <a href="homepage.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -71,14 +71,19 @@
                     <h1> Struttura: </h1>
                     
                     
-                    <ul class="nav nav-pills nav-stacked pull-left">
+                    <ul class="nav nav-tabs-justified">
   
-
-                    <% for(int i=0; i<10;i++) {%>
-                    
-                        <li><a href="#">Home</a></li>
-                        
-                    <%}%>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Campi
+                            <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                   <% for(int i=0; i<10;i++) {%>
+                                         <li><a href="#">Home</a></li>
+                                   <%}%>
+                                </ul>
+                        </li>
+                        <li><a href="#">Inserisci prenotazione</a></li>
+                        <li><a href="#">Imposta orari</a></li>
 
                     </ul>
 

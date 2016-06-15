@@ -123,20 +123,20 @@
 
                     <hr>
 
-                    <ul class="nav nav-pills nav-stacked pull-left">
+                    <ul class="nav nav-pills nav-justified">
 
 
                         <% List<Campo> cl = reservationManagement.getCampoListFromStruttura();
 
                             for (Campo c : cl) {%>
-
-                        <li>
-                            <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
+                                <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
                                 <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
                                 <input type="hidden" id="tags" name="nome_struttura" value="<%=reservationManagement.getNome_struttura()%>">
                                 <input type="hidden" value="<%=reservationManagement.getData_temp()%>" name="data_temp" class="date" id="search-DATE">
-                                <button class="btn btn-toolbar" role="link" type="submit" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>">
+                                
                             </form>
+                        <li>
+                            <button class="btn btn-link" role="link" type="submit" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>"><%=c.getNome()%></button>
                         </li>
                         <%}%>
 

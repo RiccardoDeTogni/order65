@@ -8,3 +8,52 @@ and open the template in the editor.
     Author     : Giovanni
 */
 
+#profilechange, #changepassword {
+	clear: both;
+	width: 80%;
+	margin: 6px auto 30px;
+}
+
+#profilechange input, #changepassword input {
+	display: block;
+	float:none;
+	border: none;
+	font-size: 15px;
+        margin: auto;
+	font-family: "montserrat-bold", sans-serif;
+}
+
+#profilechange input, #changepassword input {
+	height: 54px;
+	color: rgba(0, 0, 0, 0.7);
+	line-height: 30px;
+	padding: 12px 15px 12px 20px;
+	border-radius: 3px 3px 3px 3px;
+	background: rgba(255, 255, 255, 0.25);
+        margin: 5px auto 5px auto;
+	width: 70%;
+}
+
+#profilechange input[type="submit"], #changepassword input[type="submit"] {
+        clear:both;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 30px;
+	height: 54px;
+	padding: 12px 25px 12px 25px;
+	border-radius: 3px 3px 3px 3px;
+	background: white;
+	width: 70%;
+	text-align: center;
+	color: black;
+	-moz-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+#profilechange input[type="submit"]:hover, #changepassword inut[type="submit"]:hover {
+	background: #44d62c;
+}

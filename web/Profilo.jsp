@@ -101,6 +101,16 @@
         <script src="js/modernizr.js"></script>
 
 
+        <script>
+           function toggle(){
+            var toggle = document.getElementById("changepassword");
+            var button1 = document.getElementById("togglepasswordchange");
+            var button2 = document.getElementById("hidepasswordchange");
+            toggle.style.display = toggle.style.display === 'none' ? '' : 'none';
+            button1.style.display = button1.style.display === 'none' ? '' : 'none';
+            button2.style.display = button2.style.display === 'none' ? '' : 'none';
+        }
+        </script>
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
@@ -139,7 +149,7 @@
                         <h3>Username: <%=info.getUsername()%> </h3>
                         <%  userManagement.setUsername(info.getUsername());
                             User u = userManagement.getUser();%>
-                        <form action="Profilo.jsp" method="POST">
+                        <form id="profilechange" action="Profilo.jsp" method="POST">
                             <input type="name" value="<%=u.getFirst_name()%>" name="first_name" class="name" id="register-NAME">
                             <input type="surname" value="<%=u.getSurname()%>" name="surname" class="surname" id="register-SURNAME">
                             <input type="city" value="<%=u.getCity()%>" name="city" class="city" id="register-CITY">
@@ -150,19 +160,21 @@
                             <input type="hidden" name="username" value="<%=info.getUsername()%>" >
                             <input type="submit" value="Modifica" name="modifica" class="button">
                         </form>
-                        <div id="changepassword" style="display:none">
-                            <input type="password" value="" name="oldpassword" class="oldpassword" id="register-OLDPASSWORD"> 
+                            
+                            <button id="togglepasswordchange" onClick="toggle()"> Cambia la password </button>
+                        <form id="changepassword" style="display:none" action="">
+                            <input type="password" value="" name="oldpassword" class="oldpassword" id="register-OLDPASSWORD" placeholder="Vecchia Password"> 
                             <input type="password" value="" name="newpassword" class="newpassword" id="register-PASSWORD" placeholder=" Nuova Password" required>
                             <input type="password" value="" name="confirmnewpassword" class="confirmnewpassword" id="register-CONFIRMNEWPASSWORD" placeholder="Conferma Nuova Password" required onBlur="checkPasswordMatch();">
                             <input type="submit" value="Cambia Password" name="cambiapassword" class="button">
-                        </div>
+                        </form>
 
                     </div>
 
 
 
 
-                    <div id="togglepasswordchange"> Cambia la password </div>
+                    <button id="hidepasswordchange" onClick="toggle()" style="display: none"> Annulla </button>
 
 
 

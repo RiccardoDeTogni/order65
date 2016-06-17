@@ -82,18 +82,34 @@
                                    <%}%>
                                 </ul>
                         </li>
-                        <li><a href="#">Inserisci prenotazione</a></li>
-                        <li><a href="#">Imposta orari</a></li>
+                        <li><a data-toggle="tab" href="#inserimento">Inserisci prenotazione</a></li>
+                        <li><a data-toggle="tab" href="#orari">Imposta orari</a></li>
 
                     </ul>
 
                    
-                    asfawfa
-                    afwawfaw
-                    wafw
-                    fawef
-                    <br>
-                    afafef
+                                <div id="campi" class="tab-pane fade in active"></div>
+                                
+                                <div id="inserimento" class="tab-pane fade"></div>
+                                
+                                <div id="orari" class="tab-pane fade">
+                                    Imposta orario di apertura:
+                                    <input type="apertura" name="apertura" value="">
+                                    </br>
+                                    Imposta orario di chiusura:
+                                    <input type="chiusura" name="apertura" value="">
+                                    
+                                    Imposta giorno di chiusura:
+                                    <select  name="giornolibero">
+                                        <option value="Lunedi">Lunedì</option>
+                                        <option value="Martedi">Martedì</option>
+                                        <option value="Mercoledi">Mercoledì</option>
+                                        <option value="Giovedi">Giovedì</option>
+                                        <option value="Venerdi">Venerdì</option>
+                                        <option value="Sabato">Sabato</option>
+                                        <option value="Domenica">Domenica</option>
+                                    </select>
+                                </div>
 
                         
                     </div>

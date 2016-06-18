@@ -3,6 +3,10 @@
     Created on : 19-apr-2016, 16.11.36
     Author     : Giovanni
 --%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="services.log.LogTypes"%>
 <%@page import="services.log.Logs"%>
 <%@page import="blogics.Reservation"%>
@@ -50,6 +54,18 @@
         }
 
         reservationManagement.setCitta(info.getCity());
+
+        String oggi = reservationManagement.getData_temp();
+        DateFormat formatter;
+        formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date data = new java.sql.Date(formatter.parse(oggi).getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        cal.add(Calendar.DATE, -1);
+        String ieri = formatter.format(cal.getTime());
+        cal.add(Calendar.DATE, 2);
+        String domani = formatter.format(cal.getTime());
+        
     %>
     <head>
 
@@ -75,7 +91,7 @@
         <!-- Modernizr
         =================================================== -->
         <script src="js/modernizr.js"></script>
- <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
         <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
         <!-- Favicons
@@ -106,7 +122,7 @@
 
             <!-- main  -->
             <main class="row">
-                
+
                 <%@ include file="dropdown.jsp"%>
 
                 <header class="site-header">
@@ -129,12 +145,12 @@
                         <% List<Campo> cl = reservationManagement.getCampoListFromStruttura();
 
                             for (Campo c : cl) {%>
-                                <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
-                                <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
-                                <input type="hidden" id="tags" name="nome_struttura" value="<%=reservationManagement.getNome_struttura()%>">
-                                <input type="hidden" value="<%=reservationManagement.getData_temp()%>" name="data_temp" class="date" id="search-DATE">
-                                
-                            </form>
+                        <form id="changefield<%=c.getNome()%>" action="Wherepage.jsp" method="get">
+                            <input type="hidden" name="id_campo" value="<%=c.getId()%>" id="search-field">
+                            <input type="hidden" id="tags" name="nome_struttura" value="<%=reservationManagement.getNome_struttura()%>">
+                            <input type="hidden" value="<%=reservationManagement.getData_temp()%>" name="data_temp" class="date" id="search-DATE">
+
+                        </form>
                         <li>
                             <button class="btn btn-link" role="link" type="submit" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>"><%=c.getNome()%></button>
                         </li>
@@ -154,11 +170,14 @@
                     <h2><%=reservationManagement.getNomeCampo_StrutturaFromId().getNome()%></h2>
                     <div id="calendar" class="six-columns">
                         <ul id="datebar">
-                            <li>frecciasinistra</li>
-                            <li id="datebefore">Data<%%></br></li>
+                            <% if(!formatter.parse(oggi).before(Calendar.getInstance().getTime())){%>
+                            <li><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=ieri%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=ieri%></a></li>
+                            
+                           <!-- <li id="datebefore">Data<%%></br></li> -->
+                            <% } %>
                             <li id="dateselected"><%=reservationManagement.getData_temp()%></br><%=postiliberi%> posti disponibili </li>
-                            <li id="dateafter">Data<%%></br></li>
-                            <li>frecciadestra</li>
+                        <!--    <li id="dateafter">Data<%%></br></li> -->
+                            <li><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=domani%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=domani%></a></li>
                         </ul>
                         <hr>
 

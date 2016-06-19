@@ -17,6 +17,7 @@ import services.database.Database;
 import services.database.exceptions.DuplicatedRecordDBException;
 import services.database.exceptions.NotFoundDBException;
 import services.database.exceptions.ResultSetDBException;
+import services.hash.Sha512;
 import services.log.LogTypes;
 import services.log.Logs;
 import services.session.Session;
@@ -396,7 +397,7 @@ public class UserManagement {
                 usr.setType(usr.getType());
                 
                 usr.update(db);
-                Logs.printLog(LogTypes.INFO, "modify");
+                
 
             }
             db.commit();
@@ -419,9 +420,12 @@ public class UserManagement {
         try {
             db = DBService.getDatabase();
             usr = UserService.getUser(db, this.username);
+            
             if (this.info.isLoggedon()) {
+                Logs.printLog(LogTypes.INFO,"  " + this.passwd + "   " + Sha512.hashText(Sha512.hashText(this.passwd)));
                 usr.setPasswd(this.passwd);
                 usr.update(db);
+                
             }
             db.commit();
 

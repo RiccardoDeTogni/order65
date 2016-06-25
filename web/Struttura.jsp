@@ -136,7 +136,7 @@
                     <% for (int i = 0; i < 7; i++) {%>
 
                     <div id="date<%=i%>">data prova</div>
-                    <div id="slots">
+                    <div id="slots"> 
 
                         <%
                             

@@ -322,8 +322,8 @@ public class UserManagement {
             if (sType == SessionType.USER) {
                 DateFormat formatter;
                 formatter = new SimpleDateFormat("yyyy-MM-dd");
-                Date data = new java.sql.Date(formatter.parse(this.reg_date).getTime());
-                UserService.insertUser(db, this.username, this.passwd, this.first_name, this.surname, this.email, this.type, this.telephone, this.city, this.struttura, this.sport, this.birthdate);
+                Date data = new java.sql.Date(formatter.parse(this.data_temp).getTime());
+                UserService.insertUser(db, this.username, this.passwd, this.first_name, this.surname, this.email, this.type, this.telephone, this.city, this.struttura, this.sport, data);
             }
 
             db.commit();

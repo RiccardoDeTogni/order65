@@ -27,6 +27,9 @@
 
 <jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
 <jsp:setProperty name="reservationManagement" property="*" />
+
+<jsp:useBean id="userManagement" scope="page" class="bflows.UserManagement" />
+<jsp:setProperty name="userManagement" property="*" />
 <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
 <script type="text/javascript">
     window.cookieconsent_options = {"message": "Questo sito utilizza cookie per offrire il miglior servizio possibile. Chiudendo questo banner accetti l'utilizzo dei cookie.", "dismiss": "Chiudi", "learnMore": "Per saperne di più", "link": null, "theme": "dark-top"};
@@ -61,6 +64,12 @@
             }
             
         }
+    }
+    
+    if (status.equals("register")) {
+        userManagement.register();
+        
+        status = "logon";
     }
 
     if (status.equals("logon")) {
@@ -330,12 +339,13 @@
                     <input type="name" value="" name="first_name" class="name" id="register-NAME" placeholder="Nome" required>
                     <input type="surname" value="" name="surname" class="surname" id="register-SURNAME" placeholder="Cognome" required>
                     <input type="city" value="" name="city" class="city" id="register-CITY" placeholder="Città" required>
-                    <input type="date" value="" name="data" class="date" id="register-DATE" placeholder="Data di Nascita" required>
+                    <input type="date" value="" name="data_temp" class="date" id="register-DATE" placeholder="Data di Nascita" required>
                     <input type="phonenumber" value="" name="telephone" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
                     <input type="username" value="" name="username" class="username" id="register-USERNAME" placeholder="Username" required>
                     <input type="password" value="" name="password" class="password" id="register-PASSWORD" placeholder="Password" required>
                     <input type="password" value="" name="confirmpassword" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
-                    <input type="email" value="" name="email" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>              
+                    <input type="email" value="" name="email" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>
+                    <input type="hidden" value="register" name="status">
                     <input type="submit" value="Registrati" name="register" class="button">
 
 

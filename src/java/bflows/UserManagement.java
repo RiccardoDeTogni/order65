@@ -46,9 +46,9 @@ public class UserManagement {
     private int type;
     private Date last_mod;
     private String usrsession;
-    private long sport;
+    private long sport = 0;
     private boolean active;
-    private long struttura;
+    private long struttura = 0;
     private Date birthdate;
     private String data_temp;
 
@@ -313,18 +313,15 @@ public class UserManagement {
     public void register() {
         Database db = null;
         try {
-            if (this.insertType.equals("user")) {
-                this.sType = SessionType.USER;
-            } else {
-                throw new Exception();
-            }
+            
             db = DBService.getDatabase();
-            if (sType == SessionType.USER) {
+                
                 DateFormat formatter;
                 formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date data = new java.sql.Date(formatter.parse(this.data_temp).getTime());
+                //Logs.printLog(LogTypes.INFO, this.first_name + this.city + this.data_temp + this.email + "   " + this.telephone + data.toString() + this.username);
                 UserService.insertUser(db, this.username, this.passwd, this.first_name, this.surname, this.email, this.type, this.telephone, this.city, this.struttura, this.sport, data);
-            }
+                
 
             db.commit();
 

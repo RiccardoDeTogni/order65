@@ -59,9 +59,7 @@
         if (cookie != null) {
             info = new SessionInfo(cookie);
             loggedOn = info.isLoggedon();
-            if(loggedOn){
-                response.sendRedirect("SearchPage.jsp");
-            }
+            
             
         }
     }
@@ -95,6 +93,10 @@
     if (status.equals("insertReservation")){
             reservationManagement.insertReservation();
         }
+    
+    if(loggedOn){
+                response.sendRedirect("SearchPage.jsp");
+            }
 
 %>
 <html class="no-js" lang="en">
@@ -172,8 +174,8 @@
                     <div id="login">
                         <form action="homepage.jsp" method="get" id="loginform" class="group">
 
-                            <input type="text" value="" name="USERNAME" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
-                            <input type="password" value="" name="PASSWORD" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>
+                            <input type="text" value="" name="username" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
+                            <input type="password" value="" name="passwd" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>
                             <input type="hidden" value="logon" name="status" >
                             <input type="hidden" name="logtype" value="user" >
                             <input type="submit" value="Login" name="login" class="button">
@@ -342,10 +344,12 @@
                     <input type="date" value="" name="data_temp" class="date" id="register-DATE" placeholder="Data di Nascita" required>
                     <input type="phonenumber" value="" name="telephone" class="phone" id="register-PHONENUMBER" placeholder="Numero di Telefono" required>
                     <input type="username" value="" name="username" class="username" id="register-USERNAME" placeholder="Username" required>
-                    <input type="password" value="" name="password" class="password" id="register-PASSWORD" placeholder="Password" required>
+                    <input type="password" value="" name="passwd" class="password" id="register-PASSWORD" placeholder="Password" required>
                     <input type="password" value="" name="confirmpassword" class="confirmpassword" id="register-CONFIRMPASSWORD" placeholder="Conferma Password" required onBlur="checkPasswordMatch();">
                     <input type="email" value="" name="email" class="email" id="register-EMAIL" placeholder="Indirizzo Email" required>
                     <input type="hidden" value="register" name="status">
+                    <input type="hidden" value="2" name="type">
+                    <input type="hidden" name="logtype" value="user" >
                     <input type="submit" value="Registrati" name="register" class="button">
 
 

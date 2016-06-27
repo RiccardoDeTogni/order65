@@ -19,8 +19,8 @@ import services.database.exceptions.ResultSetDBException;
  * @author Riccardo
  */
 public class StrutturaService {
-    
-     public static List<Struttura> getStrutturaListFromCity(Database db, String citta) throws SQLException, NotFoundDBException, ResultSetDBException {
+
+    public static List<Struttura> getStrutturaListFromCity(Database db, String citta) throws SQLException, NotFoundDBException, ResultSetDBException {
         List<Struttura> sl = new ArrayList<>();
         String sql = "  SELECT *"
                 + " FROM struttura AS s"
@@ -39,7 +39,32 @@ public class StrutturaService {
             throw new ResultSetDBException("StrutturaService: getStrutturaListFromCity():  ResultSetDBException: " + ex.getMessage(), db);
         }
     }
-    
+//prende la struttura dal database con l'id struttura presente nello user
+    public static Struttura getStrutturaFromUser(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        Struttura struttura = null;
+
+        String sql = " SELECT * "
+                + "   FROM struttura "
+                + " WHERE id = ?";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setLong(1, id);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                struttura = new Struttura(resultSet);
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("StrutturaService: getStrutturaFromCampoId():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return struttura;
+
+    }
+
     public static Struttura getStrutturaFromCampoId(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
 
         Struttura struttura = null;
@@ -64,7 +89,7 @@ public class StrutturaService {
         return struttura;
 
     }
-    
+
     public static long getStrutturaIDFromNome(Database db, String nome) throws NotFoundDBException, ResultSetDBException, SQLException {
 
         long ret = 0;
@@ -89,5 +114,5 @@ public class StrutturaService {
         return ret;
 
     }
-    
+
 }

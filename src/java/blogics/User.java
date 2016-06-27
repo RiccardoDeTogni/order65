@@ -330,7 +330,6 @@ public class User implements ILoggableEntity{
                         + "     ?,"
                         + "     ?,"
                         + "     ?,"
-                        + "     ?,"
                         + "     ?"
                         + " )";
                 ps = db.getConnection().prepareStatement(sql);
@@ -347,7 +346,7 @@ public class User implements ILoggableEntity{
                 ps.setString(10, this.telephone);
                 ps.setString(11, this.city);
                 ps.setLong(12, this.struttura);
-                ps.setDate(12, this.birthdate);
+                ps.setDate(13, this.birthdate);
 
                 db.modify(ps);
             }

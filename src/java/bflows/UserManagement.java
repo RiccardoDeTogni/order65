@@ -532,6 +532,45 @@ public class UserManagement {
         }
         return ul;
     }
+    
+    public Struttura getStrutturaFromUser() {
+        Database db = null;
+        Struttura c = null;
+        
+        try {
+
+            db = DBService.getDatabase();
+            c = StrutturaService.getStrutturaFromUser(db, this.struttura);
+            
+            db.commit();
+            
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found");
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error");
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "ReservationManagement getNomeCampo&Struttura(): Generic Exception: " + ex.getMessage());
+
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException e) {
+                Logs.printLog(LogTypes.ERROR, "Database not found");
+            }
+        }
+        return c;
+    }
 
     public User getUser() {
         User u = null;

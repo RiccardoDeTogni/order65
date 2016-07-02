@@ -533,14 +533,14 @@ public class UserManagement {
         return ul;
     }
     
-    public Struttura getStrutturaFromUser() {
+    public Struttura getStrutturaFromUser(String username) {
         Database db = null;
         Struttura c = null;
         
         try {
 
             db = DBService.getDatabase();
-            c = StrutturaService.getStrutturaFromUser(db, this.struttura);
+            c = StrutturaService.getStrutturaFromUser(db, username);
             
             db.commit();
             

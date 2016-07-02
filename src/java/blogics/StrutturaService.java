@@ -40,16 +40,17 @@ public class StrutturaService {
         }
     }
 //prende la struttura dal database con l'id struttura presente nello user
-    public static Struttura getStrutturaFromUser(Database db, long id) throws NotFoundDBException, ResultSetDBException, SQLException {
+    public static Struttura getStrutturaFromUser(Database db, String username) throws NotFoundDBException, ResultSetDBException, SQLException {
 
         Struttura struttura = null;
-
+        User usr= UserService.getUser(db, username);
+        
         String sql = " SELECT * "
                 + "   FROM struttura "
                 + " WHERE id = ?";
 
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
-        ps.setLong(1, id);
+        ps.setLong(1, usr.getStruttura());
 
         ResultSet resultSet = db.select(ps);
 

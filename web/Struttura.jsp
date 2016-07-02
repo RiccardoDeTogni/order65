@@ -131,7 +131,7 @@
 
                     <div id="campi" class="tab-pane fade in active"></div>
 
-                    <%=userManagement.getStrutturaFromUser().getNome()%>
+                    <%=userManagement.getStrutturaFromUser(info.getUsername()).getNome()%>
                     <%  reservationManagement.setId_campo(1);
                         //reservationManagement.setNome_struttura();
                         List<Reservation> rl = reservationManagement.getReservationsFromCampo(); %>

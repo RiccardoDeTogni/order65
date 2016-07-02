@@ -19,6 +19,8 @@
 
 <jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
 <jsp:setProperty name="reservationManagement" property="*" />
+<jsp:useBean id="userManagement" scope="page" class="bflows.UserManagement" />
+<jsp:setProperty name="userManagement" property="*" />
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
 <!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
@@ -129,8 +131,9 @@
 
                     <div id="campi" class="tab-pane fade in active"></div>
 
-
+                    <%=userManagement.getStrutturaFromUser().getNome()%>
                     <%  reservationManagement.setId_campo(1);
+                        //reservationManagement.setNome_struttura();
                         List<Reservation> rl = reservationManagement.getReservationsFromCampo(); %>
 
                     <% for (int i = 0; i < 7; i++) {%>

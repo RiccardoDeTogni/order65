@@ -93,7 +93,7 @@
         
         <script type="text/javascript">
             function delete(reservid) {
-
+                //ciao
                 var resid = document.getElementById("id_reservation");
                 resid.value = reservid;
             }

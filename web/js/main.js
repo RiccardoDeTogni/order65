@@ -143,6 +143,28 @@
 		});
 
 	});
+        
+        $('#delete').click(function(){
+
+
+		$.confirm({
+			'title'		: 'Elimina prenotazione',
+			'message'	: 'Desideri eliminare la prenotazione selezionata?',
+			'buttons'	: {
+				'Conferma'	: {
+					'class'	: 'blue',
+					'action': function(){
+                                            $('#deleteReservation').submit();
+					}
+				},
+				'Annulla'	: {
+					'class'	: 'gray',
+					'action': function(){}	// Nothing to do in this case. You can as well omit the action property.
+				}
+			}
+		});
+
+	});
 
     $('.placevisualization a').on('click', 'a', function(e) {
 

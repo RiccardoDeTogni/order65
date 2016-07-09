@@ -54,6 +54,9 @@
         if (status == null) {
             status = "view";
         }
+        if (status.equals("deleteReservation")) {
+            reservationManagement.delete();
+        }
 
         reservationManagement.setCitta(info.getCity());
     %>

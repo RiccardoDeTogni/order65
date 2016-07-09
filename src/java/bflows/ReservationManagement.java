@@ -427,7 +427,7 @@ public class ReservationManagement {
         Database db = null;
         try {
             db = DBService.getDatabase();
-            ReservationService.deleteReservation(db, id);
+            ReservationService.deleteReservation(db, this.id);
             db.commit();
 
         } catch (Exception ex) {

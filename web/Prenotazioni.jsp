@@ -120,7 +120,7 @@
                 </header>
 
                 <div id="main-content" class="twelve columns">
-
+                    <% if(!status.equals("deleteReservation")){%>
                     <h1> Le mie prenotazioni </h1>
 
                     <% reservationManagement.setId_user(info.getId());
@@ -149,13 +149,17 @@
 
 
 
-                       <form id="deleteReservation" action="landingpage.jsp" method="post" >
-                           <input type="hidden" name="id_reservation" value="">
+                       <form id="deleteReservation" action="Prenotazioni.jsp" method="post" >
+                           <input type="hidden" name="id" id="id_reservation" value="">
                             <input type="hidden" name="status" value="deleteReservation">
                             <input type="hidden" name="id_user" value="<%=info.getId()%>">
                         </form>
 
-
+                        <% } else{%>
+                        <h4>La prenotazione è stata rimossa con successo...</h4>
+                        <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
+                        
+                        <% } %>
 
 
                 </div>

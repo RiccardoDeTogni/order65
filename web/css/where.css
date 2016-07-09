@@ -155,3 +155,12 @@
 #confirmBox .gray:hover{		background-position:-200px bottom;}
 #confirmBox .gray:hover span{	background-position:-395px bottom;}
 
+.slots {
+                height: 54px;
+	color: rgba(0, 0, 0, 0.7);
+	line-height: 30px;
+	padding: 12px 15px 12px 20px;
+	border-radius: 3px 3px 3px 3px;
+	background: rgba(255, 255, 255, 0.25);
+	width: 70%;
+}

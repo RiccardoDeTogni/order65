@@ -94,13 +94,10 @@ public class ReservationService {
 
     }
 
-    public static void deleteReservation(Database db, Reservation res) throws SQLException {
-        String sql = "DELETE FROM prenotazione WHERE id_user = ? AND date = ? AND ora_inizio = ? AND ora_fine = ?";
+    public static void deleteReservation(Database db, long res_id) throws SQLException {
+        String sql = "DELETE FROM prenotazione WHERE id = ?";
         PreparedStatement ps = db.getConnection().prepareStatement(sql);
-        ps.setLong(1, res.getId_user());
-        ps.setDate(2, res.getData());
-        ps.setTime(3, res.getOra_inizio());
-        ps.setTime(4, res.getOra_fine());
+        ps.setLong(1, res_id);
     }
 
     public static List<Reservation> getCurrentReservationFromUser(Database db, long user_id) throws SQLException, NotFoundDBException {

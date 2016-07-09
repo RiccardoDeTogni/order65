@@ -115,5 +115,30 @@ public class StrutturaService {
         return ret;
 
     }
+    
+    public static Struttura getStruttura(Database db, String nome) throws NotFoundDBException, ResultSetDBException, SQLException {
+
+        Struttura ret = null;
+
+        String sql = " SELECT * "
+                + "   FROM struttura "
+                + " WHERE name = ?";
+
+        PreparedStatement ps = db.getConnection().prepareStatement(sql);
+        ps.setString(1, nome);
+
+        ResultSet resultSet = db.select(ps);
+
+        try {
+            if (resultSet.next()) {
+                ret = new Struttura(resultSet);
+            }
+            resultSet.close();
+        } catch (SQLException ex) {
+            throw new ResultSetDBException("StrutturaService: getStrutturaFromCampoId():  ResultSetDBException: " + ex.getMessage(), db);
+        }
+        return ret;
+
+    }
 
 }

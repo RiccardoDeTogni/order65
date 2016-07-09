@@ -48,7 +48,7 @@
                 info = new SessionInfo(cookie);
                 loggedOn = info.isLoggedon();
             } else {
-                response.sendRedirect("homepage.jsp");
+                response.sendRedirect("index.jsp");
             }
         }
         userManagement.setInfo(info);
@@ -137,7 +137,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href="homepage.jsp">PlayToday</a>
+                        <a href="index.jsp">PlayToday</a>
                     </div> 
                 </header>
 

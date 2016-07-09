@@ -155,7 +155,7 @@
                 
                 <header class="site-header">
                     <div class="logo">
-                        <a href="homepage.jsp">PlayToday</a>
+                        <a href="index.jsp">PlayToday</a>
                     </div> 
                 </header>
 
@@ -172,7 +172,7 @@
 
                     <!-- Login Form -->
                     <div id="login">
-                        <form action="homepage.jsp" method="get" id="loginform" class="group">
+                        <form action="index.jsp" method="get" id="loginform" class="group">
 
                             <input type="text" value="" name="username" class="username" id="login-USERNAME" placeholder="Inserisci Username" required>
                             <input type="password" value="" name="passwd" class="password" id="login-PASSWORD" placeholder="Inserisci Password" required>

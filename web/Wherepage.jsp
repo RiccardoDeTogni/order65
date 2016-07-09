@@ -45,7 +45,7 @@
                 info = new SessionInfo(cookie);
                 loggedOn = info.isLoggedon();
             } else {
-                response.sendRedirect("homepage.jsp");
+                response.sendRedirect("index.jsp");
             }
         }
 
@@ -127,7 +127,7 @@
 
                 <header class="site-header">
                     <div class="logo">
-                        <a href="homepage.jsp">PlayToday.</a>
+                        <a href="index.jsp">PlayToday.</a>
                     </div> 
                 </header>
 
@@ -140,7 +140,7 @@
                     <hr>
 
                     <ul class="nav nav-pills nav-justified">
-
+                        <% if(reservationManagement.getStruttura() != null){%>
 
                         <% List<Campo> cl = reservationManagement.getCampoListFromStruttura();
 
@@ -222,7 +222,11 @@
                             <input type="hidden" name="status" value="insertReservation">
                             <input type="hidden" name="id_user" value="<%=info.getId()%>">
                         </form>
-
+                        <% }else{
+                        %>
+                        <h4>La struttura da lei inserita non esiste...</h4>
+                        <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
+                        <%}%>
                     </div>
 
                 </div>

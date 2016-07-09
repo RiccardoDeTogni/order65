@@ -19,7 +19,7 @@
                          <%} else if((info.getUsrType())==1) {%>
                          <a href="#">Paginasegreta</a>
                          <%} %>
-                        <a href="homepage.jsp?USERNAME=<%=info.getUsername()%>&status=logout">Logout</a>
+                        <a href="index.jsp?USERNAME=<%=info.getUsername()%>&status=logout">Logout</a>
                     </div>
                     <%}%>
                 </div>

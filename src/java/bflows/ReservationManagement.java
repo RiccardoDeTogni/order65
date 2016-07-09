@@ -9,6 +9,7 @@ import blogics.Reservation;
 import blogics.ReservationService;
 import blogics.Struttura;
 import blogics.StrutturaService;
+import blogics.User;
 import blogics.UserService;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -255,6 +256,45 @@ public class ReservationManagement {
         }
         return res;
     }
+    
+    public Struttura getStruttura() {
+        Struttura u = null;
+        Database db = null;
+        try {
+            db = DBService.getDatabase();
+            u = StrutturaService.getStruttura(db, this.nome_struttura);
+            db.commit();
+        } catch (NotFoundDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "Database not found: " + ex.getMessage());
+        } catch (ResultSetDBException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "ResultSet Error: " + ex.getMessage());
+        } catch (SQLException ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "SQL Error: " + ex.getMessage());
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement getUser(): Generic Exception: " + ex.getMessage());
+        } finally {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+            } catch (NotFoundDBException ex) {
+                Logs.printLog(LogTypes.ERROR, "Database not found: " + ex.getMessage());
+            }
+        }
+        return u;
+    }
 
 
     public List<Campo> getFreeCampoFromDateTime() {
@@ -380,6 +420,29 @@ public class ReservationManagement {
             } catch (NotFoundDBException e) {
                 Logs.printLog(LogTypes.ERROR, "Database not found");
             }
+        }
+    }
+    
+    public void delete() throws NotFoundDBException, ResultSetDBException, SQLException, DuplicatedRecordDBException, Exception {
+        Database db = null;
+        try {
+            db = DBService.getDatabase();
+            ReservationService.deleteReservation(db, id);
+            db.commit();
+
+        } catch (Exception ex) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement: Delete(): " + ex.getMessage());
+        }
+        try {
+            db.close();
+        } catch (NotFoundDBException e) {
+            if (db != null) {
+                db.rollback();
+            }
+            Logs.printLog(LogTypes.ERROR, "UserManagement: delete(): Database not found");
         }
     }
 

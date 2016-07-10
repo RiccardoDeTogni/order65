@@ -151,8 +151,8 @@
                             <input type="hidden" value="<%=reservationManagement.getData_temp()%>" name="data_temp" class="date" id="search-DATE">
 
                         </form>
-                        <li>
-                            <button class="btn btn-link" role="link" type="submit" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>"><%=c.getNome()%></button>
+                        <li style="background-color: rgba(255,255,255,0.25);" >
+                            <button class="btn btn-link" role="link" type="submit" style="color: #44d62c;" form="changefield<%=c.getNome()%>" name="search" value="<%=c.getNome()%>"><%=c.getNome()%></button>
                         </li>
                         <%}%>
 
@@ -171,17 +171,17 @@
                     <div id="calendar" class="six-columns">
                         <ul id="datebar">
                             <% if(!formatter.parse(oggi).before(Calendar.getInstance().getTime())){%>
-                            <li><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=ieri%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=ieri%></a></li>
+                            <li style="width: 30%"><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=ieri%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=ieri%></a></li>
                             
                            <!-- <li id="datebefore">Data<%%></br></li> -->
                             <% } %>
-                            <li id="dateselected"><%=reservationManagement.getData_temp()%></br><%=postiliberi%> posti disponibili </li>
+                            <li id="dateselected" style="width: 30%"><%=reservationManagement.getData_temp()%></br><%=postiliberi%> posti disponibili </li>
                         <!--    <li id="dateafter">Data<%%></br></li> -->
-                            <li><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=domani%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=domani%></a></li>
+                            <li style="width: 30%"><a href="Wherepage.jsp?id_campo=<%=reservationManagement.getId_campo()%>&data_temp=<%=domani%>&nome_struttura=<%=reservationManagement.getNome_struttura()%>"><%=domani%></a></li>
                         </ul>
                         <hr>
 
-                        <div id="slots">
+                        <div id="slotlist">
 
                             <%
                                 if (!rl.isEmpty()) {
@@ -199,16 +199,16 @@
                                         if (bool) {
                             %>
 
-                            <div id="slot<%=i%>" style="background-color:red">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
+                            <div id="slot<%=i%>" style="padding: 12px 15px 12px 20px; border-radius: 3px 3px 3px 3px; background: red; width: 100%;">Slot <%=i%>.00-<%=(i + 1)%>.00</div> 
                             <%  } else {%>
-                            <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
+                            <a href="#"><div id="slot<%=i%>" style="padding: 12px 15px 12px 20px; border-radius: 3px 3px 3px 3px; background: rgba(255, 255, 255, 0.25); width: 100%;" class="slot" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
                             <%}
                                 }
                             } else {
 
                                 for (int i = 7; i < 24; i++) {%>
 
-                            <a href="#"><div id="slot<%=i%>" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
+                            <a href="#"><div id="slot<%=i%>" style="padding: 12px 15px 12px 20px; border-radius: 3px 3px 3px 3px; background: rgba(255, 255, 255, 0.25); width: 100%;" class="slot" onClick="reserv(<%=i%>)" class="slot">Slot <%=i%>.00-<%=(i + 1)%>.00</div></a>
                             <%
                                     }
                                 }%> 

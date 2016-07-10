@@ -42,7 +42,7 @@
 #datebar li {
     padding:0;
     margin:0 0 10px 0 !important;
-    border:dashed #44d62c;
+    border:#44d62c;
     border-width:0px 2px;
     background-color:rgba(255, 255, 255, 0.1);
     color: #44d62c;
@@ -156,11 +156,19 @@
 #confirmBox .gray:hover span{	background-position:-395px bottom;}
 
 .slots {
-                height: 54px;
+        height: 54px;
 	color: rgba(0, 0, 0, 0.7);
 	line-height: 30px;
 	padding: 12px 15px 12px 20px;
 	border-radius: 3px 3px 3px 3px;
 	background: rgba(255, 255, 255, 0.25);
 	width: 70%;
+}
+
+.nav nav-pills li {
+    background-color: rgba(255,255,255,0.25);
+}
+
+.btn btn-link {
+     color: #f5f5f5 !important;
 }

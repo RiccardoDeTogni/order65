@@ -89,18 +89,19 @@
         <!-- Favicons
         =================================================== -->
         <link rel="shortcut icon" href="favicon.png" >
-
+        
+        <script type="text/javascript">
+            function setId(reservid) {
+                //ciao
+                document.getElementById("id_reservation").value = reservid;
+                alert("lol");
+            }
+        </script>
     </head>
 
     <body>
-        
-        <script type="text/javascript">
-            function delete(reservid) {
-                //ciao
-                var resid = document.getElementById("id_reservation");
-                resid.value = reservid;
-            }
-        </script>
+
+
 
         <!--[if lt IE 9]>
              <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
@@ -120,7 +121,7 @@
                 </header>
 
                 <div id="main-content" class="twelve columns">
-                    <% if(!status.equals("deleteReservation")){%>
+                    <% if (!status.equals("deleteReservation")) {%>
                     <h1> Le mie prenotazioni </h1>
 
                     <% reservationManagement.setId_user(info.getId());
@@ -134,32 +135,32 @@
                         <% reservationManagement.setId_campo(res.getId_campo());
 
                             Campo c = reservationManagement.getNomeCampo_StrutturaFromId();
-                            %>
-                           
+                        %>
+
                         Struttura: <%=c.getNome_struttura()%><br/>
                         Campo: <%=c.getNome()%><br/>
                         Data: <%=res.getData()%><br/>
                         Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
                         Codice Prenotazione: <%=res.getCode()%><br/>
-                        <button id="delete" onClick="delete(<%=res.getId()%>)">X</button>
-                         
+                        <button id="delete" onClick="setId(<%=res.getId()%>)">X</button>
+
                     </div>
                     <%}%>
 
 
 
 
-                       <form id="deleteReservation" action="Prenotazioni.jsp" method="post" >
-                           <input type="hidden" name="id" id="id_reservation" value="">
-                            <input type="hidden" name="status" value="deleteReservation">
-                            <input type="hidden" name="id_user" value="<%=info.getId()%>">
-                        </form>
+                    <form id="deleteReservation" action="Prenotazioni.jsp" method="get" >
+                        <input type="hidden" name="id" id="id_reservation" value="">
+                        <input type="hidden" name="status" value="deleteReservation">
+                        <input type="hidden" name="id_user" value="<%=info.getId()%>">
+                    </form>
 
-                        <% } else{%>
-                        <h4>La prenotazione è stata rimossa con successo...</h4>
-                        <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
-                        
-                        <% } %>
+                    <% } else {%>
+                    <h4>La prenotazione è stata rimossa con successo...</h4>
+                    <a href="SearchPage.jsp"><div id="ricerca">Effettua un'altra ricerca</div></a>
+
+                    <% }%>
 
 
                 </div>
@@ -184,7 +185,7 @@
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/jquery.ajaxchimp.min.js"></script>
         <script src="js/main.js"></script>  
-         <script src="js/confirm.js"></script>
+        <script src="js/confirm.js"></script>
         <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     </body>
 

@@ -73,16 +73,17 @@
                 <div id="main-content" class="twelve columns">
                     <h1>Si è verificato un errore...</h1>
                     <a href="index.jsp">Torna alla pagina iniziale</a>
+                    <!--
                     <%if (exception != null) {
                             String message = (exception.getMessage() != null) ? exception.getMessage() : "Nessun Messaggio";
                             ByteArrayOutputStream stackTrace = new ByteArrayOutputStream();
                             exception.printStackTrace(new PrintWriter(stackTrace, true));%>
                     <b>Messaggio di Errore: </b><%=message%><br/>
-                    <pre><%=stackTrace.toString()%></pre>
+                    <p><%=stackTrace.toString()%></p>
                     <%} else { %>
                     ERRORE!! Eccezione NULLA<br/>
                     No Stack Trace
-                    <%}%>
+                    <%}%> -->
 
                 </div>
 

@@ -16,6 +16,7 @@
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
+<%@ page errorPage="/errorPage.jsp" %>
 <%
     request.setCharacterEncoding("UTF-8");
 %>

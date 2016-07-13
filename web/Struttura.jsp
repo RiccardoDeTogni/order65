@@ -16,6 +16,7 @@
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
+<%@ page errorPage="/errorPage.jsp" %>
 
 <jsp:useBean id="reservationManagement" scope="page" class="bflows.ReservationManagement" />
 <jsp:setProperty name="reservationManagement" property="*" />

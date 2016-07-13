@@ -13,6 +13,7 @@
 <%@ page contentType="text/html" %>
 <%@ page session="false" %>
 <%@ page buffer="30kb" %>
+<%@ page errorPage="/errorPage.jsp" %>
 
 <!DOCTYPE html>
 <!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->

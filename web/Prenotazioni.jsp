@@ -148,7 +148,7 @@
                     </div>
                     <%}%>
 
-
+                    <a href="SearchPage.jsp"><div id="ricerca">Torna alla pagina di ricerca</div></a>
 
 
                     <form id="deleteReservation" action="Prenotazioni.jsp" method="get" >

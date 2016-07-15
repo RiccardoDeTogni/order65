@@ -15,7 +15,7 @@ public class Constants {
     
     
     public static final String DB_USERNAME = "root";
-    public static final String DB_PASSWD = "";
+    public static final String DB_PASSWD = "playtodayFTW16";
     public static final String DB_ADDRESS = "jdbc:mysql://localhost/playtoday?user=" + Constants.DB_USERNAME + "&password="+ Constants.DB_PASSWD;
 
     public static final Boolean ENABLE_LOGS = true;

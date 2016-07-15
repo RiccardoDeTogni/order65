@@ -130,7 +130,7 @@
                         Orario: <%=res.getOra_inizio()%>-<%=res.getOra_fine()%><br/>
                         Codice Prenotazione: <%=res.getCode()%> 
                     </div>
-                    <a href="#">Stampa la prenotazione</a>
+                   <!-- <a href="#">Stampa la prenotazione</a> -->
                     <p> La prenotazione sarà visibile sulla pagina <a href="Prenotazioni.jsp">"Le mie prenotazioni"</a> </p>
 
                     <%  } else { %>

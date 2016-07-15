@@ -95,7 +95,7 @@
             function setId(reservid) {
                 //ciao
                 document.getElementById("id_reservation").value = reservid;
-                alert("lol");
+                //alert("lol"); 
             }
         </script>
     </head>
